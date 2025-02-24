@@ -20,6 +20,10 @@ pnpm install
 pnpm dev
 ```
 
+### Nix
+
+This repo uses nix [direnv](https://github.com/nix-community/nix-direnv) to manage all dependencies.
+
 ## Cloning / Forking
 
 ## TODOs
