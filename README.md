@@ -23,11 +23,10 @@ pnpm dev
 
 ## Cloning / Forking
 
-[WIP] Please remove all of my personal information (projects, images, etc.) before deploying your own version of this site.
-
 ## TODOs
 
-- [ ] add zshen.dev domain redirection
-- [ ] remove all chronark.com references
+- [ ] add zshen.dev domain redirection - zshen.me/zshen.art
+- [x] remove all chronark.com references
+- [ ] add vercel analytics
 - [ ] add developer section
-- [ ] add artist section
+- [ ] add art section
