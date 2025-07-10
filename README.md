@@ -28,7 +28,7 @@ This repo uses nix [direnv](https://github.com/nix-community/nix-direnv) to mana
 
 ## TODOs
 
-- [ ] add zshen.dev domain redirection - zshen.me/zshen.art
+- [x] add zshen.dev domain redirection - zshen.art
 - [x] remove all chronark.com references
 - [ ] add vercel analytics
 - [ ] add developer section
