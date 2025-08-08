@@ -83,7 +83,7 @@ importers:
         version: 0.5.16(tailwindcss@3.3.3)
       '@types/node':
         specifier: ^20.8.4
-        version: 20.8.4
+        version: 20.19.10
       '@types/react':
         specifier: ^18.2.28
         version: 18.2.28
@@ -667,8 +667,8 @@ packages:
   '@types/ms@0.7.32':
     resolution: {integrity: sha512-xPSg0jm4mqgEkNhowKgZFBNtwoEwF6gJ4Dhww+GFpm3IgtNseHQZ5IqdNwnquZEoANxyDAKDRAdVo4Z72VvD/g==}
 
-  '@types/node@20.8.4':
-    resolution: {integrity: sha512-ZVPnqU58giiCjSxjVUESDtdPk4QR5WQhhINbc9UBrKLU68MX5BF6kbQzTrkwbolyr0X8ChBpXfavr5mZFKZQ5A==}
+  '@types/node@20.19.10':
+    resolution: {integrity: sha512-iAFpG6DokED3roLSP0K+ybeDdIX6Bc0Vd3mLW5uDqThPWtNos3E+EqOM11mPQHKzfWHqEBuLjIlsBQQ8CsISmQ==}
 
   '@types/parse5@6.0.3':
     resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
@@ -1830,8 +1830,8 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
-  undici-types@5.25.3:
-    resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
+  undici-types@6.21.0:
+    resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
   unified@10.1.2:
     resolution: {integrity: sha512-pUSWAi/RAnVy1Pif2kAoeWNBa3JVrx0MId2LASj8G+7AiHWoKZNTomq6LG326T68U7/e263X6fTdcXIy7XnF7Q==}
@@ -2227,7 +2227,7 @@ snapshots:
   '@grpc/grpc-js@1.9.5':
     dependencies:
       '@grpc/proto-loader': 0.7.10
-      '@types/node': 20.8.4
+      '@types/node': 20.19.10
 
   '@grpc/proto-loader@0.7.10':
     dependencies:
@@ -2502,9 +2502,9 @@ snapshots:
 
   '@types/ms@0.7.32': {}
 
-  '@types/node@20.8.4':
+  '@types/node@20.19.10':
     dependencies:
-      undici-types: 5.25.3
+      undici-types: 6.21.0
 
   '@types/parse5@6.0.3': {}
 
@@ -3741,7 +3741,7 @@ snapshots:
       '@protobufjs/path': 1.1.2
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
-      '@types/node': 20.8.4
+      '@types/node': 20.19.10
       long: 5.2.3
 
   queue-microtask@1.2.3: {}
@@ -4009,7 +4009,7 @@ snapshots:
 
   typescript@5.2.2: {}
 
-  undici-types@5.25.3: {}
+  undici-types@6.21.0: {}
 
   unified@10.1.2:
     dependencies:
