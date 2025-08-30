@@ -52,7 +52,7 @@ importers:
         version: 18.2.0(react@18.2.0)
       react-wrap-balancer:
         specifier: ^1.1.0
-        version: 1.1.0(react@18.2.0)
+        version: 1.1.1(react@18.2.0)
       rehype-autolink-headings:
         specifier: ^7.0.0
         version: 7.0.0
@@ -786,9 +786,6 @@ packages:
   camelcase-css@2.0.1:
     resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
     engines: {node: '>= 6'}
-
-  caniuse-lite@1.0.30001547:
-    resolution: {integrity: sha512-W7CrtIModMAxobGhz8iXmDfuJiiKg1WADMO/9x7/CLNin5cpSbuBjooyoIUVB5eyCc36QuTVlkVa1iB2S5+/eA==}
 
   caniuse-lite@1.0.30001735:
     resolution: {integrity: sha512-EV/laoX7Wq2J9TQlyIXRxTJqIw4sxfXS4OYgudGxBYRuTv0q7AM6yMEpU/Vo1I94thg9U6EZ2NfZx9GJq83u7w==}
@@ -1618,8 +1615,8 @@ packages:
     peerDependencies:
       react: ^18.2.0
 
-  react-wrap-balancer@1.1.0:
-    resolution: {integrity: sha512-EhF3jOZm5Fjx+Cx41e423qOv2c2aOvXAtym2OHqrGeMUnwERIyNsRBgnfT3plB170JmuYvts8K2KSPEIerKr5A==}
+  react-wrap-balancer@1.1.1:
+    resolution: {integrity: sha512-AB+l7FPRWl6uZ28VcJ8skkwLn2+UC62bjiw8tQUrZPlEWDVnR9MG0lghyn7EyxuJSsFEpht4G+yh2WikEqQ/5Q==}
     peerDependencies:
       react: '>=16.8.0 || ^17.0.0 || ^18'
 
@@ -2622,8 +2619,6 @@ snapshots:
       tslib: 2.6.2
 
   camelcase-css@2.0.1: {}
-
-  caniuse-lite@1.0.30001547: {}
 
   caniuse-lite@1.0.30001735: {}
 
@@ -3765,7 +3760,7 @@ snapshots:
       react: 18.2.0
       scheduler: 0.23.0
 
-  react-wrap-balancer@1.1.0(react@18.2.0):
+  react-wrap-balancer@1.1.1(react@18.2.0):
     dependencies:
       react: 18.2.0
 
