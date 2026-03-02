@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { allProjects } from "@/.contentlayer/generated";
+import { projects } from ".velite";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
 import { Article } from "./article";
@@ -13,22 +13,22 @@ export const revalidate = 60;
 export default async function ProjectsPage() {
   const views = (
     await redis.mget<number[]>(
-      ...allProjects.map((p) => ["pageviews", "projects", p.slug].join(":")),
+      ...projects.map((p) => ["pageviews", "projects", p.slug].join(":")),
     )
   ).reduce(
     (acc, v, i) => {
-      acc[allProjects[i].slug] = v ?? 0;
+      acc[projects[i].slug] = v ?? 0;
       return acc;
     },
     {} as Record<string, number>,
   );
 
-  const featured = allProjects.find(
+  const featured = projects.find(
     (project) => project.slug === "nix-config",
   )!;
-  const top2 = allProjects.find((project) => project.slug === "planetfall")!;
-  const top3 = allProjects.find((project) => project.slug === "highstorm")!;
-  const sorted = allProjects
+  const top2 = projects.find((project) => project.slug === "planetfall")!;
+  const top3 = projects.find((project) => project.slug === "highstorm")!;
+  const sorted = projects
     .filter((p) => p.published)
     .filter(
       (project) =>

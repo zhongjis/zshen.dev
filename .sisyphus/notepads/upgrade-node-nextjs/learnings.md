@@ -158,3 +158,107 @@
 - Next.js 16 font handling required moving imports from `@next/font/*` to `next/font/*` and removing `@next/font` dependency.
 - `next build` now defaults to Turbopack in v16; this repo currently needs explicit webpack mode for successful production build verification (`next build --webpack`).
 - Build succeeded end-to-end after these fixups (with expected missing Upstash env warnings and content warnings).
+
+## Wave 2b - Task 9: Update next.config.mjs for Velite Integration
+
+**Completed:** 2026-03-01
+
+### Changes Made
+1. **Removed Contentlayer import:** Deleted `import { withContentlayer } from "next-contentlayer"`
+2. **Removed Contentlayer wrapper:** Changed `export default withContentlayer(nextConfig)` → `export default nextConfig`
+3. **Removed experimental.mdxRs:** Deleted `experimental: { mdxRs: true }` block (Velite handles MDX compilation, no longer needed)
+4. **Added Velite build integration:**
+   - Imported `build` from "velite"
+   - Added webpack config with custom plugin that hooks into compiler.hooks.beforeCompile
+   - Async call to `await build()` ensures Velite generates `.velite/` before Next.js compilation
+5. **Removed pageExtensions:** No longer needed since Velite handles MDX files independently
+
+### Config Structure
+```javascript
+import { build } from "velite";
+const nextConfig = {
+  webpack: (config) => {
+    config.plugins.push(
+      new (class {
+        apply(compiler) {
+          compiler.hooks.beforeCompile.tapPromise("velite", async () => {
+            await build();
+          });
+        }
+      })(),
+    );
+    return config;
+  },
+};
+export default nextConfig;
+```
+
+### Verification
+- ✓ Config exports valid object (typeof === 'object')
+- ✓ webpack config present and valid
+- ✓ Zero Contentlayer references (grep confirms)
+- ✓ Velite build function accessible from module
+- ✓ Syntax valid (Node.js imports successfully)
+
+### Technical Notes
+- Webpack plugin pattern: Custom anonymous class with `apply(compiler)` method
+- Hook used: `compiler.hooks.beforeCompile.tapPromise()` ensures Velite builds before Next.js compilation
+- Velite build is async, hence tapPromise (not tap)
+- Plugin registration via `config.plugins.push()` is standard Next.js webpack config pattern
+
+### Blocks
+- Task 13 (Next.js build verification) can now proceed without Contentlayer errors
+
+## Task 9: Migrate Contentlayer Imports to Velite (Consumer Files)
+
+### Import path mapping:
+- Contentlayer: `import { allProjects } from "@/.contentlayer/generated"` → Velite: `import { projects } from ".velite"`
+- Contentlayer: `import type { Project } from "@/.contentlayer/generated"` → Velite: `import type { Project } from ".velite"`
+- tsconfig alias: `.velite/*` → `./.velite/*`
+
+### Key data shape differences:
+- Velite uses `projects` (not `allProjects`)
+- Velite: `project.body` is a string directly (MDX compiled code)
+- Contentlayer: `project.body.code` was nested object
+- Velite projects have: title, description, date, published, body, slug, path, repository (optional)
+
+### Remaining contentlayer reference:
+- `app/components/mdx.tsx` still imports from `next-contentlayer/hooks` — needs separate MDX rendering task
+
+### Notes:
+- Zero LSP errors after migration
+- The `.velite/index.d.ts` derives Project type from velite.config.ts collections schema automatically
+
+## Task 8: MDX Component Rewrite for Velite
+
+### Key Discovery: next-mdx-remote/rsc is WRONG for Velite
+- Velite's `s.mdx()` outputs **already-compiled JavaScript** function-body strings, NOT raw MDX source
+- The compiled output looks like: `const{Fragment:n,jsx:e}=arguments[0];function _createMdxContent(t){...}`
+- `next-mdx-remote/rsc` expects raw MDX source → would fail with Velite output
+- Correct pattern: `new Function(code)({ ...runtime }).default` using `react/jsx-runtime`
+
+### Velite MDX Rendering Pattern (Official)
+```tsx
+import * as runtime from 'react/jsx-runtime'
+
+function useMDXComponent(code: string) {
+  const fn = new Function(code)
+  return fn({ ...runtime }).default
+}
+```
+
+### Interface Compatibility
+- Kept same `Mdx({ code }: MdxProps)` interface for [slug]/page.tsx compatibility
+- [slug]/page.tsx currently does `<Mdx code={project.body.code} />` — this works because:
+  - Old Contentlayer: `project.body.code` was the compiled MDX string
+  - New Velite: `project.body` IS the compiled MDX string (body field from `s.mdx()`)
+  - [slug]/page.tsx will need update in another task to use `project.body` instead of `project.body.code`
+
+### TypeScript Improvements
+- Removed `@ts-nocheck` directive
+- Added proper HTML element type annotations to all component props (e.g. `React.HTMLAttributes<HTMLHeadingElement>`)
+- No `any` types needed — `clsx` properly typed with `(string | undefined | null | false)[]`
+- Zero LSP diagnostics
+
+### No Additional Dependencies Needed
+- Did NOT need to install `next-mdx-remote` — Velite's pattern only requires `react/jsx-runtime` (already available)

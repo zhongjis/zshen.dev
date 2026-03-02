@@ -1,11 +1,19 @@
-import { withContentlayer } from "next-contentlayer";
+import { build } from "velite";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
-	experimental: {
-		mdxRs: true,
+	webpack: (config) => {
+		config.plugins.push(
+			new (class {
+				apply(compiler) {
+					compiler.hooks.beforeCompile.tapPromise("velite", async () => {
+						await build();
+					});
+				}
+			})(),
+		);
+		return config;
 	},
 };
 
-export default withContentlayer(nextConfig);
+export default nextConfig;

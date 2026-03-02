@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { allProjects } from "@/.contentlayer/generated";
+import { projects } from ".velite";
 import { Mdx } from "@/app/components/mdx";
 import { Header } from "./header";
 import "./mdx.css";
@@ -19,7 +19,7 @@ type Props = {
 const redis = Redis.fromEnv();
 
 export async function generateStaticParams(): Promise<Params[]> {
-  return allProjects
+  return projects
     .filter((p) => p.published)
     .map((p) => ({
       slug: p.slug,
@@ -29,7 +29,7 @@ export async function generateStaticParams(): Promise<Params[]> {
 export default async function PostPage(props: Props) {
   const params = await props.params;
   const slug = params?.slug;
-  const project = allProjects.find((project) => project.slug === slug);
+  const project = projects.find((project) => project.slug === slug);
 
   if (!project) {
     notFound();
@@ -44,7 +44,7 @@ export default async function PostPage(props: Props) {
       <ReportView slug={project.slug} />
 
       <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
-        <Mdx code={project.body.code} />
+        <Mdx code={project.body} />
       </article>
     </div>
   );
