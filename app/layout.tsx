@@ -62,7 +62,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
       <head>
-        <Analytics />
       </head>
       <body
         className={`bg-black ${
@@ -70,6 +69,7 @@ export default function RootLayout({
         }`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   );
