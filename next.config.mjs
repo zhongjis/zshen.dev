@@ -2,6 +2,7 @@ import { build } from "velite";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+	turbopack: {},
 	webpack: (config) => {
 		config.plugins.push(
 			new (class {
