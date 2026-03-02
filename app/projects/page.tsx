@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React from "react";
 import { projects } from ".velite";
 import { Navigation } from "../components/nav";
 import { Card } from "../components/card";
@@ -23,24 +22,18 @@ export default async function ProjectsPage() {
     {} as Record<string, number>,
   );
 
-  const featured = projects.find(
-    (project) => project.slug === "nix-config",
-  )!;
-  const top2 = projects.find((project) => project.slug === "planetfall")!;
-  const top3 = projects.find((project) => project.slug === "highstorm")!;
-  const sorted = projects
+  const allPublished = projects
     .filter((p) => p.published)
-    .filter(
-      (project) =>
-        project.slug !== featured.slug &&
-        project.slug !== top2.slug &&
-        project.slug !== top3.slug,
-    )
     .sort(
       (a, b) =>
         new Date(b.date ?? Number.POSITIVE_INFINITY).getTime() -
         new Date(a.date ?? Number.POSITIVE_INFINITY).getTime(),
     );
+
+  const [featured, ...rest] = allPublished;
+  const top2 = rest[0];
+  const top3 = rest[1];
+  const sorted = rest.slice(2);
 
   return (
     <div className="relative pb-16">
@@ -56,8 +49,9 @@ export default async function ProjectsPage() {
         </div>
         <div className="w-full h-px bg-zinc-800" />
 
-        <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
-          <Card>
+        {featured ? (
+          <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
+            <Card>
             <Link href={`/projects/${featured.slug}`}>
               <article className="relative w-full h-full p-4 md:p-8">
                 <div className="flex items-center justify-between gap-2">
@@ -99,13 +93,16 @@ export default async function ProjectsPage() {
           </Card>
 
           <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
-            {[top2, top3].map((project) => (
-              <Card key={project.slug}>
-                <Article project={project} views={views[project.slug] ?? 0} />
-              </Card>
-            ))}
+            {[top2, top3]
+              .filter((project): project is NonNullable<typeof project> => project != null)
+              .map((project) => (
+                <Card key={project.slug}>
+                  <Article project={project} views={views[project.slug] ?? 0} />
+                </Card>
+              ))}
           </div>
         </div>
+        ) : null}
         <div className="hidden w-full h-px md:block bg-zinc-800" />
 
         <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
