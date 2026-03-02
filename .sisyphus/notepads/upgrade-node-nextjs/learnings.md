@@ -123,3 +123,38 @@
 - highstorm: published=false, empty body, slug="highstorm", path="/projects/highstorm"
 - nix-config: published=true, full MDX body, slug="nix-config", path="/projects/nix-config", repository="zhongjis/nix-config"
 - planetfall: published=true, empty body, slug="planetfall", path="/projects/planetfall"
+
+## Wave 2a - Task 5: Next.js 16 + React 19 Codemod Upgrade
+
+**Completed:** 2026-03-01
+
+### Changes Made
+1. Ran `pnpm dlx @next/codemod@canary upgrade latest` (non-interactive defaults) to perform framework/runtime upgrade.
+2. Upgraded core versions in `package.json`:
+   - `next`: `13.5.x` → `16.1.6`
+   - `react` / `react-dom`: `18.2.0` → `19.2.4`
+   - `@types/react` / `@types/react-dom`: upgraded to React 19-compatible versions (`19.2.14` / `19.2.3`)
+3. Codemod-updated source files:
+   - `app/projects/[slug]/page.tsx` (async params shape for modern App Router)
+   - `pages/api/incr.ts` (`req.ip` migration to `ipAddress(req)` with `@vercel/functions`)
+   - `app/components/mdx.tsx`, `types/mdx.d.ts`
+4. Manual fixup after codemod:
+   - Corrected `generateStaticParams` return typing in `app/projects/[slug]/page.tsx` by splitting `Params` from `Props` and returning `Promise<Params[]>`.
+
+### Verification
+- `pnpm install` exits 0
+- `node -e` version check confirms:
+  - `next=16.1.6` (starts with `16.`)
+  - `react=19.2.4` (starts with `19.`)
+- LSP diagnostics clean for changed TS/TSX/DTS files
+
+### Notes
+- Codemod also created `eslint.config.mjs` via `next-lint-to-eslint-cli` recommendation.
+- Peer warnings remain for `next-contentlayer` and `framer-motion` (known follow-up compatibility work).
+
+### Additional Manual Fixups (Post-verification)
+- Build-time module resolution required migrating `contentlayer/generated` imports to `@/.contentlayer/generated` in project pages.
+- React 19 compatibility required upgrading `framer-motion` to `12.34.3`.
+- Next.js 16 font handling required moving imports from `@next/font/*` to `next/font/*` and removing `@next/font` dependency.
+- `next build` now defaults to Turbopack in v16; this repo currently needs explicit webpack mode for successful production build verification (`next build --webpack`).
+- Build succeeded end-to-end after these fixups (with expected missing Upstash env warnings and content warnings).
