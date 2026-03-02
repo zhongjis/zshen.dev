@@ -2,6 +2,9 @@
   "name": "zshen.dev",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,11 +14,9 @@
   "dependencies": {
     "@next/font": "^13.5.4",
     "@upstash/redis": "^1.23.3",
-    "contentlayer": "^0.3.4",
-    "motion": "^12.4.10",
     "lucide-react": "^0.542.0",
+    "motion": "^12.4.10",
     "next": "^13.5.4",
-    "next-contentlayer": "^0.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rehype-autolink-headings": "^7.0.0",

@@ -262,3 +262,70 @@ function useMDXComponent(code: string) {
 
 ### No Additional Dependencies Needed
 - Did NOT need to install `next-mdx-remote` — Velite's pattern only requires `react/jsx-runtime` (already available)
+
+
+## Wave 2b - Task 10: Migrate pages/api/incr.ts to App Router Route Handler
+
+**Completed:** 2026-03-01
+
+### Changes Made
+1. **Created `app/api/incr/route.ts`** as App Router Route Handler
+   - Exports `runtime = "edge"` (replaces Pages Router `config.runtime`)
+   - Exports named `POST()` function (replaces `default export` with method check)
+   - Uses `NextRequest`/`NextResponse` from `next/server`
+2. **Fixed dedup bug**: Added missing `return` before `new NextResponse(null, { status: 202 })` on line 42 of original
+   - Original: `new NextResponse(null, { status: 202 })` — created response but didn't return it
+   - Fix: `return new NextResponse(null, { status: 202 })` — properly exits early when dedup blocks
+   - Without fix: counter incremented even when same IP visited within 24h
+3. **IP extraction changed**: `req.ip` → `request.headers.get('x-forwarded-for')?.split(',')[0] ?? '127.0.0.1'`
+   - `req.ip` is not available in App Router Route Handlers
+   - x-forwarded-for header is standard for IP extraction in edge runtime
+4. **Deleted `pages/api/incr.ts`** and empty `pages/` directory
+
+### Key Differences: Pages Router API → App Router Route Handler
+- `export default function handler(req)` → `export async function POST(request)`
+- `export const config = { runtime: 'edge' }` → `export const runtime = 'edge'`
+- Method checked via `req.method !== 'POST'` → Named export handles routing
+- `req.ip` → `request.headers.get('x-forwarded-for')`
+
+### Verification
+- ✓ LSP diagnostics clean on new route.ts
+- ✓ pages/api/incr.ts removed
+- ✓ pages/ directory removed (was only entry)
+- ✓ Consumer (app/projects/[slug]/view.tsx) uses `/api/incr` path — unchanged
+- ✓ Redis key format preserved: `pageviews:projects:{slug}` and `deduplicate:{hash}:{slug}`
+
+## Wave 3 - Task 13: Final Contentlayer Cleanup
+
+**Completed:** 2026-03-01
+
+### Changes Made
+1. **Removed contentlayer packages:** `pnpm remove contentlayer next-contentlayer` (removed 206 transitive packages)
+2. **Deleted contentlayer.config.js** (no longer needed)
+3. **Deleted .contentlayer/ directory** (replaced by .velite/)
+4. **Updated .gitignore:** Removed `.contentlayer` entry, kept `.velite` (fixed duplicate `.velite` line)
+5. **Added engines field to package.json:** `"engines": { "node": ">=22" }`
+6. **Fixed tsconfig.json paths:** Added `.velite` → `./.velite` mapping (base path, not just glob) for `from ".velite"` imports
+7. **Fixed velite.config.ts:** Changed `clean: true` → `clean: false` to prevent .velite/ being emptied during multi-pass webpack compilation
+
+### Build Issue: velite `clean: true` + webpack multi-compilation
+- Velite's `clean: true` empties the `.velite/` output directory before each build
+- Next.js webpack triggers `beforeCompile` hook 3 times (multiple compilation passes)
+- With `clean: true`, the third pass would clean the second pass's output, then write, but the files were gone by type-checking time
+- Fix: Set `clean: false` — velite overwrites files in-place without wiping the directory
+
+### tsconfig.json path resolution
+- `.velite/*` → `./.velite/*` only resolves subpath imports like `.velite/projects`
+- `from ".velite"` (bare module) needs a separate `.velite` → `./.velite` mapping
+- Both paths are now present for complete coverage
+
+### Verification
+- ✓ `pnpm exec tsc --noEmit` exits 0
+- ✓ `pnpm build` compiles and type-checks successfully (prerender errors are expected without Redis env vars)
+- ✓ Zero contentlayer references in source (only comments in velite.config.ts explaining migration rationale)
+- ✓ Zero LSP diagnostics on all changed files
+- ✓ package.json has `engines.node >= 22`
+
+### Prerender Errors (Pre-existing, Not Related)
+- `Failed to parse URL from /pipeline` — Upstash Redis client needs `UPSTASH_REDIS_REST_URL` env var
+- These only occur during static generation without env vars (expected in local builds)
