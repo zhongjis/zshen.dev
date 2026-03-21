@@ -52,7 +52,7 @@ export default async function ProjectsPage() {
 						</p>
 					</div>
 
-					<div className="motion-enter motion-delay-4 rounded-3xl border border-[#2d3650] bg-[#101729]/85 p-6 transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1">
+					<div className="motion-enter motion-delay-4 rounded-3xl border border-[#2d3650] bg-[#212633]/85 p-6 transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1">
 						<p className="type-label text-zinc-400">Published</p>
 						<p className="type-metric mt-3 font-display text-zinc-100">
 							{allPublished.length}

@@ -44,7 +44,7 @@ export default function Home() {
 						</p>
 					</div>
 
-					<div className="motion-enter motion-delay-5 rounded-3xl border border-[#2e3a55] bg-[#12192b]/85 p-6 backdrop-blur-sm transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1 sm:p-8">
+					<div className="motion-enter motion-delay-5 rounded-3xl border border-[#2e3a55] bg-[#212633]/85 p-6 backdrop-blur-sm transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1 sm:p-8">
 						<p className="type-label text-zinc-400">Current focus</p>
 						<p className="type-display-md mt-4 font-display text-zinc-100">
 							Trust my taste through shipped work.

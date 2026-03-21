@@ -25,7 +25,7 @@ export const Navigation: FC = () => {
 				className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] ${
 					isIntersecting
 						? "bg-transparent border-transparent"
-						: "bg-[#0a0d14]/75 backdrop-blur-md border-white/5"
+						: "bg-[#191c28]/75 backdrop-blur-md border-white/5"
 				}`}
 			>
 				<div className="container mx-auto flex items-center justify-between px-6 py-4 motion-fade">
