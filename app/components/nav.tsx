@@ -37,11 +37,11 @@ export const Navigation: FC = () => {
             Home
           </Link>
 
-          <div className="flex items-center gap-2 rounded-full border border-[#2c3449] bg-[#11182a]/85 p-1.5">
+          <div className="flex items-center gap-2 rounded-full bg-[#11182a]/72 p-1.5">
             <Link
               href="/projects"
               aria-current={pathname === "/projects" ? "page" : undefined}
-              className={`type-label ui-btn px-4 ${
+              className={`type-label ui-btn ui-btn-quiet px-4 ${
                 pathname === "/projects"
                   ? "is-active"
                   : "text-zinc-300"
@@ -52,7 +52,7 @@ export const Navigation: FC = () => {
             <Link
               href="/contact"
               aria-current={pathname === "/contact" ? "page" : undefined}
-              className={`type-label ui-btn px-4 ${
+              className={`type-label ui-btn ui-btn-quiet px-4 ${
                 pathname === "/contact"
                   ? "is-active"
                   : "text-zinc-300"

@@ -53,6 +53,14 @@ export const Header: FC<Props> = ({ project, views }) => {
         }`}
       >
         <div className="container mx-auto flex items-center justify-between px-6 py-5 motion-fade">
+          <Link
+            href="/projects"
+            className="type-label ui-btn ui-btn-quiet text-zinc-200"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Projects
+          </Link>
+
           <div className="flex items-center gap-5">
             <span
               title="View counter for this page"
@@ -73,14 +81,6 @@ export const Header: FC<Props> = ({ project, views }) => {
               <Github className="w-5 h-5" />
             </Link>
           </div>
-
-          <Link
-            href="/projects"
-            className="type-label ui-btn ui-btn-quiet text-zinc-200"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Projects
-          </Link>
         </div>
       </div>
 

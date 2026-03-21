@@ -199,8 +199,8 @@
     justify-content: center;
     gap: 0.5rem;
     border-radius: 9999px;
-    border: 1px solid #33405a;
-    background: rgba(18, 26, 45, 0.8);
+    border: 1px solid rgba(88, 106, 142, 0.5);
+    background: rgba(18, 26, 45, 0.72);
     padding: 0.5rem 1.25rem;
     color: #e4e9f5;
     transition-property: transform, color, border-color, background-color, box-shadow;
@@ -210,8 +210,8 @@
 
   .ui-btn:hover {
     transform: translateY(-1px);
-    border-color: rgba(216, 165, 95, 0.7);
-    background: rgba(29, 39, 64, 0.95);
+    border-color: rgba(216, 165, 95, 0.55);
+    background: rgba(29, 39, 64, 0.88);
     color: #ffffff;
   }
 
@@ -227,8 +227,8 @@
   }
 
   .ui-btn.is-active {
-    border-color: rgba(216, 165, 95, 0.7);
-    background: rgba(33, 42, 63, 0.95);
+    border-color: rgba(216, 165, 95, 0.58);
+    background: rgba(33, 42, 63, 0.88);
     color: #ffffff;
   }
 
