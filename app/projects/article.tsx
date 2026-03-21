@@ -12,7 +12,7 @@ export const Article: FC<Props> = ({ project, views }) => {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group block focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+      className="group block focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#191c28]"
     >
       <article className="p-6 transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] motion-reduce:transform-none md:p-8">
         <div className="flex items-center justify-between gap-2">

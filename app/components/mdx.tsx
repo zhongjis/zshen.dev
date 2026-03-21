@@ -85,7 +85,7 @@ const components = {
 	}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
 		<Link
 			className={clsx(
-				"text-zinc-100 underline decoration-[#d8a55f]/70 underline-offset-4 transition-all duration-200 hover:text-[#d8a55f] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]",
+				"text-zinc-100 underline decoration-[#d8a55f]/70 underline-offset-4 transition-all duration-200 hover:text-[#d8a55f] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#191c28]",
 				className,
 			)}
 			{...(props as React.ComponentProps<typeof Link>)}
