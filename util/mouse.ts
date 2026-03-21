@@ -12,13 +12,25 @@ export function useMousePosition(): MousePosition {
   });
 
   useEffect(() => {
+    let frame = 0;
+
     const handleMouseMove = (event: MouseEvent) => {
-      setMousePosition({ x: event.clientX, y: event.clientY });
+      if (frame !== 0) {
+        return;
+      }
+
+      frame = window.requestAnimationFrame(() => {
+        setMousePosition({ x: event.clientX, y: event.clientY });
+        frame = 0;
+      });
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     return () => {
+      if (frame !== 0) {
+        window.cancelAnimationFrame(frame);
+      }
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);

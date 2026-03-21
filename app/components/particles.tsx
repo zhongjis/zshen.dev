@@ -11,6 +11,19 @@ interface ParticlesProps {
   refresh?: boolean;
 }
 
+type Circle = {
+  x: number;
+  y: number;
+  translateX: number;
+  translateY: number;
+  size: number;
+  alpha: number;
+  targetAlpha: number;
+  dx: number;
+  dy: number;
+  magnetism: number;
+};
+
 export default function Particles({
   className = "",
   quantity = 30,
@@ -21,11 +34,16 @@ export default function Particles({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const canvasContainerRef = useRef<HTMLDivElement>(null);
   const context = useRef<CanvasRenderingContext2D | null>(null);
-  const circles = useRef<any[]>([]);
+  const circles = useRef<Circle[]>([]);
+  const animationFrameId = useRef<number>(0);
+  const canvasRect = useRef<DOMRect | null>(null);
   const mousePosition = useMousePosition();
+  const latestMousePosition = useRef(mousePosition);
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const canvasSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const dpr = typeof window !== "undefined" ? window.devicePixelRatio : 1;
+
+  latestMousePosition.current = mousePosition;
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -36,48 +54,21 @@ export default function Particles({
     window.addEventListener("resize", initCanvas);
 
     return () => {
+      if (animationFrameId.current !== 0) {
+        window.cancelAnimationFrame(animationFrameId.current);
+      }
       window.removeEventListener("resize", initCanvas);
     };
   }, []);
 
   useEffect(() => {
-    onMouseMove();
-  }, [mousePosition.x, mousePosition.y]);
-
-  useEffect(() => {
+    void refresh;
     initCanvas();
   }, [refresh]);
 
   const initCanvas = () => {
     resizeCanvas();
     drawParticles();
-  };
-
-  const onMouseMove = () => {
-    if (canvasRef.current) {
-      const rect = canvasRef.current.getBoundingClientRect();
-      const { w, h } = canvasSize.current;
-      const x = mousePosition.x - rect.left - w / 2;
-      const y = mousePosition.y - rect.top - h / 2;
-      const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
-      if (inside) {
-        mouse.current.x = x;
-        mouse.current.y = y;
-      }
-    }
-  };
-
-  type Circle = {
-    x: number;
-    y: number;
-    translateX: number;
-    translateY: number;
-    size: number;
-    alpha: number;
-    targetAlpha: number;
-    dx: number;
-    dy: number;
-    magnetism: number;
   };
 
   const resizeCanvas = () => {
@@ -89,6 +80,7 @@ export default function Particles({
       canvasRef.current.height = canvasSize.current.h * dpr;
       canvasRef.current.style.width = `${canvasSize.current.w}px`;
       canvasRef.current.style.height = `${canvasSize.current.h}px`;
+      canvasRect.current = canvasRef.current.getBoundingClientRect();
       context.current.scale(dpr, dpr);
     }
   };
@@ -100,7 +92,9 @@ export default function Particles({
     const translateY = 0;
     const size = Math.floor(Math.random() * 2) + 0.1;
     const alpha = 0;
-    const targetAlpha = parseFloat((Math.random() * 0.6 + 0.1).toFixed(1));
+    const targetAlpha = Number.parseFloat(
+      (Math.random() * 0.6 + 0.1).toFixed(1),
+    );
     const dx = (Math.random() - 0.5) * 0.2;
     const dy = (Math.random() - 0.5) * 0.2;
     const magnetism = 0.1 + Math.random() * 4;
@@ -168,6 +162,20 @@ export default function Particles({
 
   const animate = () => {
     clearContext();
+
+    const rect = canvasRect.current;
+    if (rect) {
+      const { w, h } = canvasSize.current;
+      const x = latestMousePosition.current.x - rect.left - w / 2;
+      const y = latestMousePosition.current.y - rect.top - h / 2;
+      const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
+
+      if (inside) {
+        mouse.current.x = x;
+        mouse.current.y = y;
+      }
+    }
+
     circles.current.forEach((circle: Circle, i: number) => {
       // Handle the alpha value
       const edge = [
@@ -177,7 +185,7 @@ export default function Particles({
         canvasSize.current.h - circle.y - circle.translateY - circle.size, // distance from bottom edge
       ];
       const closestEdge = edge.reduce((a, b) => Math.min(a, b));
-      const remapClosestEdge = parseFloat(
+      const remapClosestEdge = Number.parseFloat(
         remapValue(closestEdge, 0, 20, 0, 1).toFixed(2),
       );
       if (remapClosestEdge > 1) {
@@ -223,7 +231,7 @@ export default function Particles({
         );
       }
     });
-    window.requestAnimationFrame(animate);
+    animationFrameId.current = window.requestAnimationFrame(animate);
   };
 
   return (
