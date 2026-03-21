@@ -8,35 +8,54 @@ const navigation = [
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
-      <nav className="my-16 animate-fade-in">
-        <ul className="flex items-center justify-center gap-4">
+    <div className="relative overflow-hidden">
+      <Particles
+        className="absolute inset-0 -z-10 opacity-70"
+        quantity={90}
+        staticity={70}
+      />
+
+      <div className="relative mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center px-6 py-24 sm:px-10 lg:px-16">
+        <nav className="motion-enter mb-20 flex flex-wrap items-center gap-3">
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm duration-500 text-zinc-500 hover:text-zinc-300"
+              className="rounded-full border border-[#33405a] bg-[#121a2d]/80 px-5 py-2 text-xs uppercase tracking-[0.2em] text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:border-[#d8a55f]/70 hover:bg-[#1d2740] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
             >
               {item.name}
             </Link>
           ))}
-        </ul>
-      </nav>
-      <div className="hidden w-screen h-px md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-      <Particles
-        className="absolute inset-0 -z-10 animate-fade-in"
-        quantity={100}
-      />
-      <h1 className="py-3.5 px-0.5 z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl bg-clip-text ">
-        zshen
-      </h1>
+        </nav>
 
-      <div className="hidden w-screen h-px md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-      <div className="my-16 text-center animate-fade-in">
-        <h2 className="text-sm text-zinc-500 ">
-          A developer who loves art in any form. Currently living in south bay
-          area. More to come. 🚀
-        </h2>
+        <div className="grid gap-10 lg:grid-cols-[1.4fr_0.9fr] lg:items-end">
+          <div className="motion-enter motion-delay-1">
+            <p className="motion-fade motion-delay-2 mb-6 text-xs uppercase tracking-[0.45em] text-[#d8a55f]">
+              Technical. Refined. Human.
+            </p>
+            <h1 className="text-edge-outline motion-enter motion-delay-3 font-display text-6xl leading-[0.92] text-transparent bg-gradient-to-b from-[#f0f4fe] to-[#a7b5d8] bg-clip-text sm:text-7xl md:text-8xl lg:text-[9rem]">
+              zshen
+            </h1>
+            <p className="motion-enter motion-delay-4 mt-8 max-w-2xl text-base leading-relaxed text-zinc-300 sm:text-lg">
+              I build products with strong technical foundations and intentional
+              taste. This site is a living record of how I think, design, and
+              ship.
+            </p>
+          </div>
+
+          <div className="motion-enter motion-delay-5 rounded-3xl border border-[#2e3a55] bg-[#12192b]/85 p-6 backdrop-blur-sm transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1 sm:p-8">
+            <p className="text-xs uppercase tracking-[0.26em] text-zinc-400">
+              Current focus
+            </p>
+            <p className="mt-4 text-2xl font-display text-zinc-100 sm:text-3xl">
+              Trust my taste through shipped work.
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-zinc-400">
+              Based in South Bay. Product-minded engineering with a bias toward
+              clarity, momentum, and craft.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -2,9 +2,109 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-0: #090a0f;
+  --bg-1: #0f121a;
+  --bg-2: #171c27;
+  --surface: #111624;
+  --surface-strong: #1a2030;
+  --text: #e7ecf8;
+  --muted: #9faac4;
+  --accent: #d8a55f;
+  --accent-soft: rgba(216, 165, 95, 0.18);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur-mid: 280ms;
+  --dur-slow: 560ms;
+}
+
 @layer base {
+  html,
+  body {
+    min-height: 100%;
+  }
+
+  body {
+    color: var(--text);
+    background:
+      radial-gradient(1200px 700px at 12% 0%, rgba(216, 165, 95, 0.14), transparent 58%),
+      radial-gradient(900px 600px at 88% 8%, rgba(115, 140, 193, 0.18), transparent 52%),
+      linear-gradient(180deg, var(--bg-1), var(--bg-0) 35%, #07080d 100%);
+    background-attachment: fixed;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    background-image: repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 72px,
+      rgba(255, 255, 255, 0.08) 73px
+    );
+  }
+
   .text-edge-outline {
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+    -webkit-text-stroke: 1px rgba(231, 236, 248, 0.28);
+  }
+
+  @keyframes motion-fade-up {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 20px, 0) scale(0.99);
+    }
+
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+  }
+
+  @keyframes motion-fade-in {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .motion-enter {
+    opacity: 0;
+    animation: motion-fade-up var(--dur-slow) var(--ease-out-expo) forwards;
+    will-change: opacity, transform;
+  }
+
+  .motion-fade {
+    opacity: 0;
+    animation: motion-fade-in var(--dur-slow) var(--ease-out-quint) forwards;
+    will-change: opacity;
+  }
+
+  .motion-delay-1 {
+    animation-delay: 90ms;
+  }
+
+  .motion-delay-2 {
+    animation-delay: 180ms;
+  }
+
+  .motion-delay-3 {
+    animation-delay: 270ms;
+  }
+
+  .motion-delay-4 {
+    animation-delay: 360ms;
+  }
+
+  .motion-delay-5 {
+    animation-delay: 450ms;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -16,5 +116,12 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+
+    .motion-enter,
+    .motion-fade {
+      opacity: 1 !important;
+      animation: none !important;
+      transform: none !important;
+    }
   }
-} 
+}

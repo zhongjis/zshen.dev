@@ -5,14 +5,17 @@ import type { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://zshen.dev"),
   title: {
     default: "zshen.dev",
     template: "%s | zshen.dev",
   },
-  description: "Co-founder of unkey.dev and founder of planetfall.io",
+  description:
+    "Technical, refined, human - product-minded engineering shaped by clarity, craft, and shipped work.",
   openGraph: {
     title: "zshen.dev",
-    description: "Co-founder of unkey.dev and founder of planetfall.io",
+    description:
+      "Technical, refined, human - product-minded engineering shaped by clarity, craft, and shipped work.",
     url: "https://zshen.dev",
     siteName: "zshen.dev",
     images: [
@@ -39,6 +42,8 @@ export const metadata: Metadata = {
   twitter: {
     title: "zshen.dev",
     card: "summary_large_image",
+    description:
+      "Technical, refined, human - product-minded engineering shaped by clarity, craft, and shipped work.",
   },
   icons: {
     shortcut: "/favicon.png",
@@ -64,7 +69,7 @@ export default function RootLayout({
       <head>
       </head>
       <body
-        className={`bg-black ${
+        className={`text-zinc-100 antialiased ${
           process.env.NODE_ENV === "development" ? "debug-screens" : undefined
         }`}
       >
@@ -74,7 +79,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="relative">{children}</main>
         <Analytics />
       </body>
     </html>

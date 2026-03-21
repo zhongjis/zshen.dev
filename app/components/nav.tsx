@@ -1,9 +1,9 @@
 "use client";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type FC } from "react";
 
-export const Navigation: React.FC = () => {
+export const Navigation: FC = () => {
   const ref = useRef<HTMLElement>(null);
   const [isIntersecting, setIntersecting] = useState(true);
 
@@ -20,34 +20,35 @@ export const Navigation: React.FC = () => {
   return (
     <header ref={ref}>
       <div
-        className={`fixed inset-x-0 top-0 z-50 backdrop-blur  duration-200 border-b  ${
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] ${
           isIntersecting
-            ? "bg-zinc-900/0 border-transparent"
-            : "bg-zinc-900/500  border-zinc-800 "
+            ? "bg-transparent border-transparent"
+            : "bg-[#0a0d14]/80 backdrop-blur-xl border-[#2a3247]"
         }`}
       >
-        <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
-          <div className="flex justify-between gap-8">
+        <div className="container mx-auto flex items-center justify-between px-6 py-5 motion-fade">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 rounded-full text-sm uppercase tracking-[0.25em] text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-x-0.5 hover:text-white active:scale-[0.98] motion-reduce:hover:translate-x-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Home
+          </Link>
+
+          <div className="flex items-center gap-2 rounded-full border border-[#2c3449] bg-[#11182a]/85 p-1.5">
             <Link
               href="/projects"
-              className="duration-200 text-zinc-400 hover:text-zinc-100"
+              className="rounded-full px-4 py-1.5 text-sm text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#212a3f] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
             >
               Projects
             </Link>
             <Link
               href="/contact"
-              className="duration-200 text-zinc-400 hover:text-zinc-100"
+              className="rounded-full px-4 py-1.5 text-sm text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#212a3f] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
             >
               Contact
             </Link>
           </div>
-
-          <Link
-            href="/"
-            className="duration-200 text-zinc-300 hover:text-zinc-100"
-          >
-            <ArrowLeft className="w-6 h-6 " />
-          </Link>
         </div>
       </div>
     </header>

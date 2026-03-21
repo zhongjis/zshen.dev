@@ -9,6 +9,7 @@ import { Eye } from "lucide-react";
 const redis = Redis.fromEnv();
 
 export const revalidate = 60;
+
 export default async function ProjectsPage() {
   const views = (
     await redis.mget<number[]>(
@@ -31,109 +32,115 @@ export default async function ProjectsPage() {
     );
 
   const [featured, ...rest] = allPublished;
-  const top2 = rest[0];
-  const top3 = rest[1];
-  const sorted = rest.slice(2);
 
   return (
-    <div className="relative pb-16">
+    <div className="relative min-h-screen pb-20">
       <Navigation />
-      <div className="px-6 pt-20 mx-auto space-y-8 max-w-7xl lg:px-8 md:space-y-16 md:pt-24 lg:pt-32">
-        <div className="max-w-2xl mx-auto lg:mx-0">
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-100 sm:text-4xl">
-            Projects
-          </h2>
-          <p className="mt-4 text-zinc-400">
-            Some of the projects are from work and some are on my own time.
-          </p>
+
+      <div className="mx-auto w-full max-w-7xl px-6 pt-28 sm:pt-32 lg:px-10">
+        <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
+          <div className="motion-enter">
+            <p className="motion-fade motion-delay-1 text-xs uppercase tracking-[0.32em] text-[#d8a55f]">Projects</p>
+            <h1 className="motion-enter motion-delay-2 mt-4 max-w-3xl font-display text-4xl text-zinc-100 sm:text-5xl md:text-6xl">
+              Work that proves product judgment in code.
+            </h1>
+            <p className="motion-enter motion-delay-3 mt-6 max-w-2xl text-zinc-300">
+              Selected projects from client work and independent builds, focused
+              on real outcomes over feature theater.
+            </p>
+          </div>
+
+          <div className="motion-enter motion-delay-4 rounded-3xl border border-[#2d3650] bg-[#101729]/85 p-6 transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1">
+            <p className="text-xs uppercase tracking-[0.22em] text-zinc-400">Published</p>
+            <p className="mt-3 font-display text-4xl text-zinc-100">{allPublished.length}</p>
+            <p className="mt-3 text-sm text-zinc-400">Live entries currently visible in this archive.</p>
+          </div>
         </div>
-        <div className="w-full h-px bg-zinc-800" />
+
+        <div className="my-10 h-px bg-gradient-to-r from-transparent via-[#43506d] to-transparent" />
 
         {featured ? (
-          <div className="grid grid-cols-1 gap-8 mx-auto lg:grid-cols-2 ">
+          <div className="motion-enter motion-delay-2 grid gap-8 lg:grid-cols-[1.35fr_0.65fr]">
             <Card>
-            <Link href={`/projects/${featured.slug}`}>
-              <article className="relative w-full h-full p-4 md:p-8">
-                <div className="flex items-center justify-between gap-2">
-                  <div className="text-xs text-zinc-100">
-                    {featured.date ? (
-                      <time dateTime={new Date(featured.date).toISOString()}>
-                        {Intl.DateTimeFormat(undefined, {
-                          dateStyle: "medium",
-                        }).format(new Date(featured.date))}
-                      </time>
-                    ) : (
-                      <span>SOON</span>
-                    )}
+              <Link
+                href={`/projects/${featured.slug}`}
+                className="group block focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+              >
+                <article className="relative flex h-full min-h-[22rem] flex-col justify-between p-6 sm:p-8">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="text-xs uppercase tracking-[0.18em] text-zinc-300">
+                      {featured.date ? (
+                        <time dateTime={new Date(featured.date).toISOString()}>
+                          {Intl.DateTimeFormat(undefined, {
+                            dateStyle: "medium",
+                          }).format(new Date(featured.date))}
+                        </time>
+                      ) : (
+                        <span>Soon</span>
+                      )}
+                    </div>
+                    <span className="flex items-center gap-1 text-xs text-zinc-400">
+                      <Eye className="h-4 w-4" />
+                      {Intl.NumberFormat("en-US", { notation: "compact" }).format(
+                        views[featured.slug] ?? 0,
+                      )}
+                    </span>
                   </div>
-                  <span className="flex items-center gap-1 text-xs text-zinc-500">
-                    <Eye className="w-4 h-4" />{" "}
-                    {Intl.NumberFormat("en-US", { notation: "compact" }).format(
-                      views[featured.slug] ?? 0,
-                    )}
+
+                  <div className="mt-8">
+                    <h2 className="font-display text-3xl text-zinc-100 transition-colors group-hover:text-white sm:text-4xl md:text-5xl">
+                      {featured.title}
+                    </h2>
+                    <p className="mt-5 max-w-2xl text-zinc-300 transition-colors group-hover:text-zinc-200">
+                      {featured.description}
+                    </p>
+                  </div>
+
+                  <span className="mt-10 inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#d8a55f] transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1">
+                    Featured entry {"->"}
                   </span>
-                </div>
+                </article>
+              </Link>
+            </Card>
 
-                <h2
-                  id="featured-post"
-                  className="mt-4 text-3xl font-bold text-zinc-100 group-hover:text-white sm:text-4xl font-display"
-                >
-                  {featured.title}
-                </h2>
-                <p className="mt-4 leading-8 duration-150 text-zinc-400 group-hover:text-zinc-300">
-                  {featured.description}
-                </p>
-                <div className="absolute bottom-4 md:bottom-8">
-                  <p className="hidden text-zinc-200 hover:text-zinc-50 lg:block">
-                    Read more <span aria-hidden="true">&rarr;</span>
-                  </p>
-                </div>
-              </article>
-            </Link>
+              <div className="grid gap-8">
+               {rest.slice(0, 2).map((project, index) => (
+                 <div
+                   key={project.slug}
+                   className="motion-enter"
+                   style={{ animationDelay: `${420 + index * 90}ms` }}
+                 >
+                   <Card>
+                     <Article project={project} views={views[project.slug] ?? 0} />
+                   </Card>
+                 </div>
+               ))}
+              </div>
+          </div>
+        ) : (
+          <Card>
+            <div className="p-8 sm:p-10">
+              <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">No entries yet</p>
+              <p className="mt-4 font-display text-3xl text-zinc-100">Projects are being prepared.</p>
+            </div>
           </Card>
+        )}
 
-          <div className="flex flex-col w-full gap-8 mx-auto border-t border-gray-900/10 lg:mx-0 lg:border-t-0 ">
-            {[top2, top3]
-              .filter((project): project is NonNullable<typeof project> => project != null)
-              .map((project) => (
-                <Card key={project.slug}>
+        {rest.length > 2 ? (
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {rest.slice(2).map((project, index) => (
+              <div
+                key={project.slug}
+                className="motion-enter"
+                style={{ animationDelay: `${240 + index * 80}ms` }}
+              >
+                <Card>
                   <Article project={project} views={views[project.slug] ?? 0} />
                 </Card>
-              ))}
+              </div>
+            ))}
           </div>
-        </div>
         ) : null}
-        <div className="hidden w-full h-px md:block bg-zinc-800" />
-
-        <div className="grid grid-cols-1 gap-4 mx-auto lg:mx-0 md:grid-cols-3">
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 0)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 1)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {sorted
-              .filter((_, i) => i % 3 === 2)
-              .map((project) => (
-                <Card key={project.slug}>
-                  <Article project={project} views={views[project.slug] ?? 0} />
-                </Card>
-              ))}
-          </div>
-        </div>
       </div>
     </div>
   );

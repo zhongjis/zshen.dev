@@ -27,37 +27,59 @@ const socials = [
 
 export default function Example() {
   return (
-    <div className=" bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
+    <div className="relative min-h-screen pb-20">
       <Navigation />
-      <div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
-        <div className="grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16">
-          {socials.map((s) => (
-            <Card key={s.href}>
-              <Link
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${s.label} (${s.handle}) opens in a new tab`}
-                className="p-4 relative flex flex-col items-center gap-4 duration-700 group md:gap-8 md:py-24  lg:pb-48  md:p-16"
-              >
-                <span
-                  className="absolute w-px h-2/3 bg-gradient-to-b from-zinc-500 via-zinc-500/50 to-transparent"
-                  aria-hidden="true"
-                />
-                <span className="relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-zinc-900 border-zinc-500 bg-zinc-900 group-hover:border-zinc-200">
+      <div className="container mx-auto px-6 pt-28 sm:pt-32 lg:px-10">
+        <div className="mb-14 max-w-3xl motion-enter">
+          <p className="motion-fade motion-delay-1 text-xs uppercase tracking-[0.3em] text-[#d8a55f]">Contact</p>
+          <h1 className="motion-enter motion-delay-2 mt-4 text-4xl font-display text-zinc-100 sm:text-5xl md:text-6xl">
+            Open channel, low noise.
+          </h1>
+          <p className="motion-enter motion-delay-3 mt-6 max-w-2xl text-zinc-300">
+            Reach out with an idea, collaboration, or problem worth solving.
+            I prefer direct messages and clear intent.
+          </p>
+        </div>
+
+        <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-3 lg:gap-10">
+          {socials.map((s, index) => {
+            const opensNewTab = !s.href.startsWith("mailto:");
+            const animationDelay = `${360 + index * 90}ms`;
+
+            return (
+              <Card key={s.href}>
+                <Link
+                  href={s.href}
+                  target={opensNewTab ? "_blank" : undefined}
+                  rel={opensNewTab ? "noopener noreferrer" : undefined}
+                  aria-label={
+                    opensNewTab
+                      ? `${s.label} (${s.handle}) opens in a new tab`
+                      : `${s.label} (${s.handle})`
+                  }
+                  className="group motion-enter relative flex min-h-[18rem] flex-col items-start justify-between gap-8 p-6 transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-1 active:scale-[0.99] focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16] sm:min-h-[20rem] sm:p-8"
+                  style={{ animationDelay }}
+                >
+                <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[#445173] bg-[#0d1322] text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-105 group-hover:border-[#d8a55f]/80 group-hover:text-white">
                   {s.icon}
-                </span>{" "}
-                <div className="z-10 flex flex-col items-center">
-                  <span className="lg:text-xl font-medium duration-150 xl:text-3xl text-zinc-200 group-hover:text-white font-display">
+                </span>
+
+                <div className="z-10 flex flex-col">
+                  <span className="font-display text-xl text-zinc-100 transition-colors group-hover:text-white sm:text-2xl break-words">
                     {s.handle}
                   </span>
-                  <span className="mt-4 text-sm text-center duration-1000 text-zinc-400 group-hover:text-zinc-200">
+                  <span className="mt-3 text-xs uppercase tracking-[0.22em] text-zinc-400 transition-colors group-hover:text-zinc-200">
                     {s.label}
                   </span>
                 </div>
-              </Link>
-            </Card>
-          ))}
+
+                <span className="text-xs uppercase tracking-[0.18em] text-zinc-500 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1 group-hover:text-[#d8a55f]">
+                  Open link {"->"}
+                </span>
+                </Link>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </div>

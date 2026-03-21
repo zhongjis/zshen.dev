@@ -43,26 +43,22 @@ export const Header: FC<Props> = ({ project, views }) => {
   return (
     <header
       ref={ref}
-      className="relative isolate overflow-hidden bg-gradient-to-tl from-black via-zinc-900 to-black"
+      className="relative isolate overflow-hidden"
     >
       <div
-        className={`fixed inset-x-0 top-0 z-50 backdrop-blur lg:backdrop-blur-none duration-200 border-b lg:bg-transparent ${
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] ${
           isIntersecting
-            ? "bg-zinc-900/0 border-transparent"
-            : "bg-white/10  border-zinc-200 lg:border-transparent"
+            ? "bg-transparent border-transparent"
+            : "bg-[#0a0d14]/85 backdrop-blur-xl border-[#2a3247]"
         }`}
       >
-        <div className="container flex flex-row-reverse items-center justify-between p-6 mx-auto">
-          <div className="flex justify-between gap-8">
+        <div className="container mx-auto flex items-center justify-between px-6 py-5 motion-fade">
+          <div className="flex items-center gap-5">
             <span
               title="View counter for this page"
-              className={`duration-200 hover:font-medium flex items-center gap-1 ${
-                isIntersecting
-                  ? " text-zinc-400 hover:text-zinc-100"
-                  : "text-zinc-600 hover:text-zinc-900"
-              } `}
+              className="flex items-center gap-1 text-xs uppercase tracking-[0.18em] text-zinc-300"
             >
-              <Eye className="w-5 h-5" />{" "}
+              <Eye className="w-4 h-4" />
               {Intl.NumberFormat("en-US", { notation: "compact" }).format(
                 views,
               )}
@@ -72,50 +68,45 @@ export const Header: FC<Props> = ({ project, views }) => {
               rel="noopener noreferrer"
               aria-label="Open Zhongjie Shen GitHub profile in a new tab"
               href="https://github.com/zhongjis"
+              className="rounded-full text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:scale-105 hover:text-white motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
             >
-              <Github
-                className={`w-6 h-6 duration-200 hover:font-medium ${
-                  isIntersecting
-                    ? " text-zinc-400 hover:text-zinc-100"
-                    : "text-zinc-600 hover:text-zinc-900"
-                } `}
-              />
+              <Github className="w-5 h-5" />
             </Link>
           </div>
 
           <Link
             href="/projects"
-            className={`duration-200 hover:font-medium ${
-              isIntersecting
-                ? " text-zinc-400 hover:text-zinc-100"
-                : "text-zinc-600 hover:text-zinc-900"
-            } `}
+            className="inline-flex items-center gap-2 rounded-full text-xs uppercase tracking-[0.24em] text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-x-0.5 hover:text-white motion-reduce:hover:translate-x-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
           >
-            <ArrowLeft className="w-6 h-6 " />
+            <ArrowLeft className="w-4 h-4" />
+            Projects
           </Link>
         </div>
       </div>
-      <div className="container mx-auto relative isolate overflow-hidden  py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
-          <div className="mx-auto max-w-2xl lg:mx-0">
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
+
+      <div className="relative mx-auto max-w-7xl overflow-hidden px-6 pb-14 pt-28 sm:pt-32 lg:px-10">
+        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+          <div className="motion-enter mx-auto max-w-3xl">
+            <p className="motion-fade motion-delay-1 mb-4 text-xs uppercase tracking-[0.3em] text-[#d8a55f]">Project</p>
+            <h1 className="motion-enter motion-delay-2 font-display text-4xl tracking-tight text-zinc-100 sm:text-6xl">
               {project.title}
             </h1>
-            <p className="mt-6 text-lg leading-8 text-zinc-300">
+            <p className="motion-enter motion-delay-3 mt-6 text-base leading-relaxed text-zinc-300 sm:text-lg">
               {project.description}
             </p>
           </div>
 
-          <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
-            <div className="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
+          <div className="mx-auto mt-10 max-w-2xl lg:max-w-none">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-white">
               {links.map((link) => (
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
                   key={link.label}
                   href={link.href}
+                  className="rounded-full border border-[#33405c] bg-[#121a2d]/80 px-5 py-2 text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:border-[#d8a55f]/70 hover:text-white motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
                 >
-                  {link.label} <span aria-hidden="true">&rarr;</span>
+                  {link.label} <span aria-hidden="true">-&gt;</span>
                 </Link>
               ))}
             </div>

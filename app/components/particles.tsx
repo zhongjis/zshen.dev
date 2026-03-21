@@ -37,6 +37,7 @@ export default function Particles({
   const circles = useRef<Circle[]>([]);
   const animationFrameId = useRef<number>(0);
   const canvasRect = useRef<DOMRect | null>(null);
+  const prefersReducedMotion = useRef<boolean>(false);
   const mousePosition = useMousePosition();
   const latestMousePosition = useRef(mousePosition);
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
@@ -49,14 +50,27 @@ export default function Particles({
     if (canvasRef.current) {
       context.current = canvasRef.current.getContext("2d");
     }
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const setMotionPreference = (event: MediaQueryList | MediaQueryListEvent) => {
+      prefersReducedMotion.current = event.matches;
+    };
+
+    setMotionPreference(mediaQuery);
+    mediaQuery.addEventListener("change", setMotionPreference);
+
     initCanvas();
-    animate();
+    if (!prefersReducedMotion.current) {
+      animate();
+    }
+
     window.addEventListener("resize", initCanvas);
 
     return () => {
       if (animationFrameId.current !== 0) {
         window.cancelAnimationFrame(animationFrameId.current);
       }
+      mediaQuery.removeEventListener("change", setMotionPreference);
       window.removeEventListener("resize", initCanvas);
     };
   }, []);
@@ -161,6 +175,10 @@ export default function Particles({
   };
 
   const animate = () => {
+    if (prefersReducedMotion.current) {
+      return;
+    }
+
     clearContext();
 
     const rect = canvasRect.current;
