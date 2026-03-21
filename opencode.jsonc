@@ -20,5 +20,10 @@
       "command": ["npx", "shadcn@latest", "mcp"],
       "enabled": true,
     },
+    "agentation": {
+      "type": "local",
+      "command": ["npx", "-y", "agentation-mcp", "server"],
+      "enabled": true,
+    },
   },
 }
