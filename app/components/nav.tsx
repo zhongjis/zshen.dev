@@ -1,10 +1,12 @@
 "use client";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type FC } from "react";
 
 export const Navigation: FC = () => {
   const ref = useRef<HTMLElement>(null);
+  const pathname = usePathname();
   const [isIntersecting, setIntersecting] = useState(true);
 
   useEffect(() => {
@@ -38,13 +40,23 @@ export const Navigation: FC = () => {
           <div className="flex items-center gap-2 rounded-full border border-[#2c3449] bg-[#11182a]/85 p-1.5">
             <Link
               href="/projects"
-              className="type-label rounded-full px-4 py-1.5 text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#212a3f] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+              aria-current={pathname === "/projects" ? "page" : undefined}
+              className={`type-label inline-flex min-h-11 items-center rounded-full px-4 py-2 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#212a3f] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16] ${
+                pathname === "/projects"
+                  ? "bg-[#212a3f] text-white"
+                  : "text-zinc-300"
+              }`}
             >
               Projects
             </Link>
             <Link
               href="/contact"
-              className="type-label rounded-full px-4 py-1.5 text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#212a3f] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+              aria-current={pathname === "/contact" ? "page" : undefined}
+              className={`type-label inline-flex min-h-11 items-center rounded-full px-4 py-2 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#212a3f] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16] ${
+                pathname === "/contact"
+                  ? "bg-[#212a3f] text-white"
+                  : "text-zinc-300"
+              }`}
             >
               Contact
             </Link>

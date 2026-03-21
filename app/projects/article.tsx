@@ -14,7 +14,7 @@ export const Article: FC<Props> = ({ project, views }) => {
       href={`/projects/${project.slug}`}
       className="group block focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
     >
-      <article className="p-6 transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:-translate-y-1 motion-reduce:transform-none md:p-8">
+      <article className="p-6 transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] motion-reduce:transform-none md:p-8">
         <div className="flex items-center justify-between gap-2">
           <span className="type-label num-tabular text-zinc-400 transition-colors group-hover:text-zinc-200">
             {project.date ? (
@@ -24,7 +24,7 @@ export const Article: FC<Props> = ({ project, views }) => {
                 )}
               </time>
             ) : (
-              <span>SOON</span>
+              <span>Soon</span>
             )}
           </span>
           <span className="type-label num-tabular flex items-center gap-1 text-zinc-500">

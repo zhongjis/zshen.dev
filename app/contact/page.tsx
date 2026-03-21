@@ -25,7 +25,7 @@ const socials = [
   },
 ];
 
-export default function Example() {
+export default function ContactPage() {
   return (
     <div className="relative min-h-screen pb-20">
       <Navigation />
@@ -60,22 +60,22 @@ export default function Example() {
                   className="group motion-enter relative flex min-h-[18rem] flex-col items-start justify-between gap-8 p-6 transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-1 active:scale-[0.99] focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16] sm:min-h-[20rem] sm:p-8"
                   style={{ animationDelay }}
                 >
-                <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[#445173] bg-[#0d1322] text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-105 group-hover:border-[#d8a55f]/80 group-hover:text-white">
-                  {s.icon}
-                </span>
-
-                <div className="z-10 flex flex-col">
-                  <span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-zinc-100 transition-colors group-hover:text-white break-words">
-                    {s.handle}
+                  <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[#445173] bg-[#0d1322] text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-105 group-hover:border-[#d8a55f]/80 group-hover:text-white motion-reduce:transform-none">
+                    {s.icon}
                   </span>
-                  <span className="type-label mt-3 text-zinc-400 transition-colors group-hover:text-zinc-200">
-                    {s.label}
-                  </span>
-                </div>
 
-                <span className="type-label text-zinc-500 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1 group-hover:text-[#d8a55f]">
-                  Open link {"->"}
-                </span>
+                  <div className="z-10 flex flex-col">
+                    <span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-zinc-100 transition-colors group-hover:text-white break-words">
+                      {s.handle}
+                    </span>
+                    <span className="type-label mt-3 text-zinc-400 transition-colors group-hover:text-zinc-200">
+                      {s.label}
+                    </span>
+                  </div>
+
+                  <span className="type-label text-zinc-500 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1 group-hover:text-[#d8a55f]">
+                    Open link {"->"}
+                  </span>
                 </Link>
               </Card>
             );

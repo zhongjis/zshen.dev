@@ -92,38 +92,40 @@ export default async function ProjectsPage() {
                       {featured.title}
                     </h2>
                     <p className="type-body measure mt-5 text-zinc-300 transition-colors group-hover:text-zinc-200">
-                      {featured.description}
+                      {featured.description || "A practical build shaped by product judgment and engineering rigor."}
                     </p>
                   </div>
 
                   <span className="type-label mt-10 inline-flex items-center text-[#d8a55f] transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1">
-                    Featured entry {"->"}
+                    Read more {"->"}
                   </span>
                 </article>
               </Link>
             </Card>
 
-              <div className="grid gap-8">
-               {rest.slice(0, 2).map((project, index) => (
-                 <div
-                   key={project.slug}
-                   className="motion-enter"
-                   style={{ animationDelay: `${420 + index * 90}ms` }}
-                 >
-                   <Card>
-                     <Article project={project} views={views[project.slug] ?? 0} />
-                   </Card>
-                 </div>
-               ))}
-              </div>
+            <div className="grid gap-8">
+              {rest.slice(0, 2).map((project, index) => (
+                <div
+                  key={project.slug}
+                  className="motion-enter"
+                  style={{ animationDelay: `${420 + index * 90}ms` }}
+                >
+                  <Card>
+                    <Article project={project} views={views[project.slug] ?? 0} />
+                  </Card>
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
-          <Card>
+          <div className="motion-enter" style={{ animationDelay: "240ms" }}>
+            <Card>
             <div className="p-8 sm:p-10">
               <p className="type-label text-zinc-400">No entries yet</p>
               <p className="type-display-md mt-4 font-display text-zinc-100">Projects are being prepared.</p>
             </div>
-          </Card>
+            </Card>
+          </div>
         )}
 
         {rest.length > 2 ? (

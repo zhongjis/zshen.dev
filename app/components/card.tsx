@@ -30,6 +30,18 @@ export const Card: FC<PropsWithChildren> = ({ children }) => {
     glowOpacity.set(0);
   }
 
+  function onFocusWithin() {
+    if (prefersReducedMotion) {
+      return;
+    }
+
+    glowOpacity.set(0.85);
+  }
+
+  function onBlurWithin() {
+    glowOpacity.set(0);
+  }
+
   const maskImage = useMotionTemplate`radial-gradient(240px at ${mouseX}px ${mouseY}px, white, transparent)`;
   const style = { maskImage, WebkitMaskImage: maskImage };
 
@@ -37,6 +49,8 @@ export const Card: FC<PropsWithChildren> = ({ children }) => {
     <div
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
+      onFocusCapture={onFocusWithin}
+      onBlurCapture={onBlurWithin}
       className="group relative overflow-hidden rounded-3xl border border-[#2a3349] bg-[#0f1422]/80 transition-all duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1 hover:border-[#c59756]/55 hover:bg-[#141b2d]/90 motion-reduce:hover:translate-y-0"
     >
       <div className="pointer-events-none">

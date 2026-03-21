@@ -10,7 +10,7 @@ const projects = defineCollection({
 	schema: s
 		.object({
 			title: s.string(),
-			description: s.string().nullable().default(""),
+			description: s.string().nullable().default("A practical build by zshen."),
 			date: s.isodate().optional(),
 			published: s.boolean().default(false),
 			url: s.string().optional(),
@@ -20,7 +20,8 @@ const projects = defineCollection({
 		})
 		.transform((data) => ({
 			...data,
-			description: data.description ?? "",
+			description:
+				data.description?.trim() || "A practical build by zshen.",
 			// Match Contentlayer's computed slug: strip the first path segment (e.g. "projects/foo" -> "foo")
 			slug: data.slug.split("/").slice(1).join("/"),
 			// Match Contentlayer's computed path: "/{flattenedPath}"
