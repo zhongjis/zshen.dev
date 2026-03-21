@@ -56,7 +56,7 @@ export const Header: FC<Props> = ({ project, views }) => {
           <div className="flex items-center gap-5">
             <span
               title="View counter for this page"
-              className="flex items-center gap-1 text-xs uppercase tracking-[0.18em] text-zinc-300"
+              className="type-label num-tabular flex items-center gap-1 text-zinc-300"
             >
               <Eye className="w-4 h-4" />
               {Intl.NumberFormat("en-US", { notation: "compact" }).format(
@@ -76,7 +76,7 @@ export const Header: FC<Props> = ({ project, views }) => {
 
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 rounded-full text-xs uppercase tracking-[0.24em] text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-x-0.5 hover:text-white motion-reduce:hover:translate-x-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+              className="type-label inline-flex items-center gap-2 rounded-full text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-x-0.5 hover:text-white motion-reduce:hover:translate-x-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
           >
             <ArrowLeft className="w-4 h-4" />
             Projects
@@ -87,24 +87,24 @@ export const Header: FC<Props> = ({ project, views }) => {
       <div className="relative mx-auto max-w-7xl overflow-hidden px-6 pb-14 pt-28 sm:pt-32 lg:px-10">
         <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <div className="motion-enter mx-auto max-w-3xl">
-            <p className="motion-fade motion-delay-1 mb-4 text-xs uppercase tracking-[0.3em] text-[#d8a55f]">Project</p>
-            <h1 className="motion-enter motion-delay-2 font-display text-4xl tracking-tight text-zinc-100 sm:text-6xl">
+            <p className="type-kicker motion-fade motion-delay-1 mb-4 text-[#d8a55f]">Project</p>
+            <h1 className="type-display-lg motion-enter motion-delay-2 font-display text-zinc-100">
               {project.title}
             </h1>
-            <p className="motion-enter motion-delay-3 mt-6 text-base leading-relaxed text-zinc-300 sm:text-lg">
+            <p className="type-lead measure motion-enter motion-delay-3 mt-6 mx-auto text-zinc-300">
               {project.description}
             </p>
           </div>
 
           <div className="mx-auto mt-10 max-w-2xl lg:max-w-none">
-            <div className="flex flex-wrap items-center justify-center gap-3 text-sm font-medium text-white">
+            <div className="flex flex-wrap items-center justify-center gap-3 text-white">
               {links.map((link) => (
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
                   key={link.label}
                   href={link.href}
-                  className="rounded-full border border-[#33405c] bg-[#121a2d]/80 px-5 py-2 text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:border-[#d8a55f]/70 hover:text-white motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+                  className="type-label rounded-full border border-[#33405c] bg-[#121a2d]/80 px-5 py-2 text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:border-[#d8a55f]/70 hover:text-white motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
                 >
                   {link.label} <span aria-hidden="true">-&gt;</span>
                 </Link>

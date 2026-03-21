@@ -12,6 +12,15 @@
   --muted: #9faac4;
   --accent: #d8a55f;
   --accent-soft: rgba(216, 165, 95, 0.18);
+  --text-caption: 0.75rem;
+  --text-label: 0.8125rem;
+  --text-body: 1rem;
+  --text-lead: 1.125rem;
+  --text-display-md: clamp(1.5rem, 3vw, 2.5rem);
+  --text-display-lg: clamp(2.25rem, 5vw, 3.9rem);
+  --text-display-xl: clamp(3.25rem, 9vw, 8rem);
+  --track-caption: 0.18em;
+  --track-kicker: 0.3em;
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
@@ -28,6 +37,11 @@
 
   body {
     color: var(--text);
+    font-family: var(--font-instrument-sans), "Avenir Next", "Segoe UI", sans-serif;
+    font-size: var(--text-body);
+    line-height: 1.62;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
     background:
       radial-gradient(1200px 700px at 12% 0%, rgba(216, 165, 95, 0.14), transparent 58%),
       radial-gradient(900px 600px at 88% 8%, rgba(115, 140, 193, 0.18), transparent 52%),
@@ -105,6 +119,77 @@
 
   .motion-delay-5 {
     animation-delay: 450ms;
+  }
+
+  .type-kicker {
+    font-size: var(--text-caption);
+    line-height: 1.15;
+    letter-spacing: var(--track-kicker);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .type-label {
+    font-size: var(--text-label);
+    line-height: 1.2;
+    letter-spacing: var(--track-caption);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .type-body {
+    font-size: var(--text-body);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .type-body-sm {
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+
+  .type-lead {
+    font-size: var(--text-lead);
+    line-height: 1.72;
+    font-weight: 400;
+  }
+
+  .type-display-md {
+    font-size: var(--text-display-md);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+
+  .type-display-lg {
+    font-size: var(--text-display-lg);
+    line-height: 1.02;
+    letter-spacing: -0.014em;
+    font-weight: 600;
+  }
+
+  .type-display-xl {
+    font-size: var(--text-display-xl);
+    line-height: 0.94;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+  }
+
+  .type-metric {
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 1;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .measure {
+    max-width: 65ch;
+  }
+
+  .num-tabular {
+    font-variant-numeric: tabular-nums;
   }
 
   @media (prefers-reduced-motion: reduce) {

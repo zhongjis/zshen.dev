@@ -31,11 +31,11 @@ export default function Example() {
       <Navigation />
       <div className="container mx-auto px-6 pt-28 sm:pt-32 lg:px-10">
         <div className="mb-14 max-w-3xl motion-enter">
-          <p className="motion-fade motion-delay-1 text-xs uppercase tracking-[0.3em] text-[#d8a55f]">Contact</p>
-          <h1 className="motion-enter motion-delay-2 mt-4 text-4xl font-display text-zinc-100 sm:text-5xl md:text-6xl">
+          <p className="type-kicker motion-fade motion-delay-1 text-[#d8a55f]">Contact</p>
+          <h1 className="type-display-lg motion-enter motion-delay-2 mt-4 font-display text-zinc-100">
             Open channel, low noise.
           </h1>
-          <p className="motion-enter motion-delay-3 mt-6 max-w-2xl text-zinc-300">
+          <p className="type-lead measure motion-enter motion-delay-3 mt-6 text-zinc-300">
             Reach out with an idea, collaboration, or problem worth solving.
             I prefer direct messages and clear intent.
           </p>
@@ -65,15 +65,15 @@ export default function Example() {
                 </span>
 
                 <div className="z-10 flex flex-col">
-                  <span className="font-display text-xl text-zinc-100 transition-colors group-hover:text-white sm:text-2xl break-words">
+                  <span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-zinc-100 transition-colors group-hover:text-white break-words">
                     {s.handle}
                   </span>
-                  <span className="mt-3 text-xs uppercase tracking-[0.22em] text-zinc-400 transition-colors group-hover:text-zinc-200">
+                  <span className="type-label mt-3 text-zinc-400 transition-colors group-hover:text-zinc-200">
                     {s.label}
                   </span>
                 </div>
 
-                <span className="text-xs uppercase tracking-[0.18em] text-zinc-500 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1 group-hover:text-[#d8a55f]">
+                <span className="type-label text-zinc-500 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1 group-hover:text-[#d8a55f]">
                   Open link {"->"}
                 </span>
                 </Link>

@@ -16,7 +16,7 @@ export const Article: FC<Props> = ({ project, views }) => {
     >
       <article className="p-6 transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:-translate-y-1 motion-reduce:transform-none md:p-8">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-xs uppercase tracking-[0.18em] text-zinc-400 transition-colors group-hover:text-zinc-200">
+          <span className="type-label num-tabular text-zinc-400 transition-colors group-hover:text-zinc-200">
             {project.date ? (
               <time dateTime={new Date(project.date).toISOString()}>
                 {Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(
@@ -27,20 +27,20 @@ export const Article: FC<Props> = ({ project, views }) => {
               <span>SOON</span>
             )}
           </span>
-          <span className="flex items-center gap-1 text-xs text-zinc-500">
+          <span className="type-label num-tabular flex items-center gap-1 text-zinc-500">
             <Eye className="w-4 h-4" />{" "}
             {Intl.NumberFormat("en-US", { notation: "compact" }).format(views)}
           </span>
         </div>
 
-        <h2 className="z-20 mt-4 text-2xl font-display text-zinc-100 transition-colors group-hover:text-white lg:text-3xl">
+        <h2 className="type-display-md z-20 mt-4 font-display text-zinc-100 transition-colors group-hover:text-white">
           {project.title}
         </h2>
-        <p className="z-20 mt-4 text-sm leading-relaxed text-zinc-400 transition-colors group-hover:text-zinc-200">
+        <p className="type-body-sm z-20 mt-4 text-zinc-400 transition-colors group-hover:text-zinc-200">
           {project.description}
         </p>
 
-        <span className="mt-8 inline-block text-xs uppercase tracking-[0.2em] text-[#d8a55f] transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1 motion-reduce:transform-none">
+        <span className="type-label mt-8 inline-block text-[#d8a55f] transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1 motion-reduce:transform-none">
           Read more {"->"}
         </span>
       </article>

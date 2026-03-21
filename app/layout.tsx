@@ -1,5 +1,5 @@
 import "../global.css";
-import { Inter } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import LocalFont from "next/font/local";
 import type { Metadata } from "next";
 import { Analytics } from "./components/analytics";
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     shortcut: "/favicon.png",
   },
 };
-const inter = Inter({
+const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-instrument-sans",
 });
 
 const calSans = LocalFont({
@@ -65,7 +65,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
+    <html lang="en" className={[instrumentSans.variable, calSans.variable].join(" ")}>
       <head>
       </head>
       <body

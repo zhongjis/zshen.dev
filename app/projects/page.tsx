@@ -40,20 +40,20 @@ export default async function ProjectsPage() {
       <div className="mx-auto w-full max-w-7xl px-6 pt-28 sm:pt-32 lg:px-10">
         <div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
           <div className="motion-enter">
-            <p className="motion-fade motion-delay-1 text-xs uppercase tracking-[0.32em] text-[#d8a55f]">Projects</p>
-            <h1 className="motion-enter motion-delay-2 mt-4 max-w-3xl font-display text-4xl text-zinc-100 sm:text-5xl md:text-6xl">
+            <p className="type-kicker motion-fade motion-delay-1 text-[#d8a55f]">Projects</p>
+            <h1 className="type-display-lg motion-enter motion-delay-2 mt-4 max-w-3xl font-display text-zinc-100">
               Work that proves product judgment in code.
             </h1>
-            <p className="motion-enter motion-delay-3 mt-6 max-w-2xl text-zinc-300">
+            <p className="type-lead measure motion-enter motion-delay-3 mt-6 text-zinc-300">
               Selected projects from client work and independent builds, focused
               on real outcomes over feature theater.
             </p>
           </div>
 
           <div className="motion-enter motion-delay-4 rounded-3xl border border-[#2d3650] bg-[#101729]/85 p-6 transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1">
-            <p className="text-xs uppercase tracking-[0.22em] text-zinc-400">Published</p>
-            <p className="mt-3 font-display text-4xl text-zinc-100">{allPublished.length}</p>
-            <p className="mt-3 text-sm text-zinc-400">Live entries currently visible in this archive.</p>
+            <p className="type-label text-zinc-400">Published</p>
+            <p className="type-metric mt-3 font-display text-zinc-100">{allPublished.length}</p>
+            <p className="type-body-sm mt-3 text-zinc-400">Live entries currently visible in this archive.</p>
           </div>
         </div>
 
@@ -68,7 +68,7 @@ export default async function ProjectsPage() {
               >
                 <article className="relative flex h-full min-h-[22rem] flex-col justify-between p-6 sm:p-8">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="text-xs uppercase tracking-[0.18em] text-zinc-300">
+                    <div className="type-label num-tabular text-zinc-300">
                       {featured.date ? (
                         <time dateTime={new Date(featured.date).toISOString()}>
                           {Intl.DateTimeFormat(undefined, {
@@ -79,7 +79,7 @@ export default async function ProjectsPage() {
                         <span>Soon</span>
                       )}
                     </div>
-                    <span className="flex items-center gap-1 text-xs text-zinc-400">
+                    <span className="type-label num-tabular flex items-center gap-1 text-zinc-400">
                       <Eye className="h-4 w-4" />
                       {Intl.NumberFormat("en-US", { notation: "compact" }).format(
                         views[featured.slug] ?? 0,
@@ -88,15 +88,15 @@ export default async function ProjectsPage() {
                   </div>
 
                   <div className="mt-8">
-                    <h2 className="font-display text-3xl text-zinc-100 transition-colors group-hover:text-white sm:text-4xl md:text-5xl">
+                    <h2 className="type-display-md font-display text-zinc-100 transition-colors group-hover:text-white">
                       {featured.title}
                     </h2>
-                    <p className="mt-5 max-w-2xl text-zinc-300 transition-colors group-hover:text-zinc-200">
+                    <p className="type-body measure mt-5 text-zinc-300 transition-colors group-hover:text-zinc-200">
                       {featured.description}
                     </p>
                   </div>
 
-                  <span className="mt-10 inline-flex items-center text-xs uppercase tracking-[0.2em] text-[#d8a55f] transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1">
+                  <span className="type-label mt-10 inline-flex items-center text-[#d8a55f] transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1">
                     Featured entry {"->"}
                   </span>
                 </article>
@@ -120,8 +120,8 @@ export default async function ProjectsPage() {
         ) : (
           <Card>
             <div className="p-8 sm:p-10">
-              <p className="text-xs uppercase tracking-[0.2em] text-zinc-400">No entries yet</p>
-              <p className="mt-4 font-display text-3xl text-zinc-100">Projects are being prepared.</p>
+              <p className="type-label text-zinc-400">No entries yet</p>
+              <p className="type-display-md mt-4 font-display text-zinc-100">Projects are being prepared.</p>
             </div>
           </Card>
         )}
