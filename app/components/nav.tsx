@@ -31,7 +31,7 @@ export const Navigation: FC = () => {
         <div className="container mx-auto flex items-center justify-between px-6 py-5 motion-fade">
           <Link
             href="/"
-            className="type-label inline-flex items-center gap-2 rounded-full text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-x-0.5 hover:text-white active:scale-[0.98] motion-reduce:hover:translate-x-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+            className="type-label ui-btn ui-btn-quiet"
           >
             <ArrowLeft className="w-4 h-4" />
             Home
@@ -41,9 +41,9 @@ export const Navigation: FC = () => {
             <Link
               href="/projects"
               aria-current={pathname === "/projects" ? "page" : undefined}
-              className={`type-label inline-flex min-h-11 items-center rounded-full px-4 py-2 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#212a3f] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16] ${
+              className={`type-label ui-btn px-4 ${
                 pathname === "/projects"
-                  ? "bg-[#212a3f] text-white"
+                  ? "is-active"
                   : "text-zinc-300"
               }`}
             >
@@ -52,9 +52,9 @@ export const Navigation: FC = () => {
             <Link
               href="/contact"
               aria-current={pathname === "/contact" ? "page" : undefined}
-              className={`type-label inline-flex min-h-11 items-center rounded-full px-4 py-2 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-[#212a3f] hover:text-white active:scale-[0.98] motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16] ${
+              className={`type-label ui-btn px-4 ${
                 pathname === "/contact"
-                  ? "bg-[#212a3f] text-white"
+                  ? "is-active"
                   : "text-zinc-300"
               }`}
             >

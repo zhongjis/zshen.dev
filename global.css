@@ -192,6 +192,71 @@
     font-variant-numeric: tabular-nums;
   }
 
+  .ui-btn {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid #33405a;
+    background: rgba(18, 26, 45, 0.8);
+    padding: 0.5rem 1.25rem;
+    color: #e4e9f5;
+    transition-property: transform, color, border-color, background-color, box-shadow;
+    transition-duration: var(--dur-mid);
+    transition-timing-function: var(--ease-out-quart);
+  }
+
+  .ui-btn:hover {
+    transform: translateY(-1px);
+    border-color: rgba(216, 165, 95, 0.7);
+    background: rgba(29, 39, 64, 0.95);
+    color: #ffffff;
+  }
+
+  .ui-btn:active {
+    transform: scale(0.98);
+  }
+
+  .ui-btn:focus-visible {
+    outline: none;
+    box-shadow:
+      0 0 0 2px #d8a55f,
+      0 0 0 4px #0b0e16;
+  }
+
+  .ui-btn.is-active {
+    border-color: rgba(216, 165, 95, 0.7);
+    background: rgba(33, 42, 63, 0.95);
+    color: #ffffff;
+  }
+
+  .ui-btn-icon {
+    width: 2.75rem;
+    min-height: 2.75rem;
+    padding: 0;
+  }
+
+  .ui-btn-quiet {
+    border-color: transparent;
+    background: transparent;
+    padding-inline: 0.35rem;
+  }
+
+  .ui-btn-quiet:hover {
+    background: rgba(29, 39, 64, 0.5);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ui-btn,
+    .ui-btn:hover,
+    .ui-btn:active {
+      transform: none !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

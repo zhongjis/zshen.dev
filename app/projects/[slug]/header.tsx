@@ -68,7 +68,7 @@ export const Header: FC<Props> = ({ project, views }) => {
               rel="noopener noreferrer"
               aria-label="Open Zhongjie Shen GitHub profile in a new tab"
               href="https://github.com/zhongjis"
-              className="rounded-full text-zinc-300 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:scale-105 hover:text-white motion-reduce:hover:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+              className="ui-btn ui-btn-icon text-zinc-300"
             >
               <Github className="w-5 h-5" />
             </Link>
@@ -76,7 +76,7 @@ export const Header: FC<Props> = ({ project, views }) => {
 
           <Link
             href="/projects"
-            className="type-label inline-flex items-center gap-2 rounded-full text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-x-0.5 hover:text-white motion-reduce:hover:translate-x-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+            className="type-label ui-btn ui-btn-quiet text-zinc-200"
           >
             <ArrowLeft className="w-4 h-4" />
             Projects
@@ -104,7 +104,7 @@ export const Header: FC<Props> = ({ project, views }) => {
                   rel="noopener noreferrer"
                   key={link.label}
                   href={link.href}
-                  className="type-label inline-flex min-h-11 items-center rounded-full border border-[#33405c] bg-[#121a2d]/80 px-5 py-2 text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:border-[#d8a55f]/70 hover:text-white motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+                  className="type-label ui-btn text-zinc-200"
                 >
                   {link.label} <span aria-hidden="true">{"->"}</span>
                 </Link>

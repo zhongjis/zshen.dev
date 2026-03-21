@@ -57,7 +57,7 @@ export default function ContactPage() {
                       ? `${s.label} (${s.handle}) opens in a new tab`
                       : `${s.label} (${s.handle})`
                   }
-                  className="group motion-enter relative flex min-h-[18rem] flex-col items-start justify-between gap-8 p-6 transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-1 active:scale-[0.99] focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16] sm:min-h-[20rem] sm:p-8"
+                  className="group motion-enter relative flex min-h-[18rem] flex-col items-start justify-between gap-8 p-6 transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-1 active:scale-[0.98] focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16] sm:min-h-[20rem] sm:p-8"
                   style={{ animationDelay }}
                 >
                   <span className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full border border-[#445173] bg-[#0d1322] text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:scale-105 group-hover:border-[#d8a55f]/80 group-hover:text-white motion-reduce:transform-none">

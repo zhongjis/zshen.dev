@@ -17,7 +17,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/projects"
-          className="type-label mt-10 inline-flex min-h-11 items-center rounded-full border border-[#33405a] bg-[#121a2d]/80 px-5 py-2 text-zinc-200 transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] hover:-translate-y-0.5 hover:border-[#d8a55f]/70 hover:text-white motion-reduce:hover:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b0e16]"
+          className="type-label ui-btn mt-10"
         >
           Back to projects {"->"}
         </Link>
