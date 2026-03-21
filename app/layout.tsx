@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "placeholder",
+    title: "zshen.dev",
     card: "summary_large_image",
   },
   icons: {
