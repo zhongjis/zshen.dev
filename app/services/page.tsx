@@ -7,14 +7,14 @@ export default function ServicesPage() {
 		<div className="relative min-h-screen pb-20">
 			<Navigation />
 			<div className="container mx-auto px-6 pt-28 sm:pt-32 lg:px-10">
-				<div className="mb-14 max-w-3xl motion-enter">
-					<p className="type-kicker motion-fade motion-delay-1 text-[#d8a55f]">
+				<div className="mb-16 max-w-3xl motion-enter">
+					<p className="type-kicker motion-fade motion-delay-1 text-accent">
 						Services
 					</p>
-					<h1 className="type-display-lg motion-enter motion-delay-2 mt-4 font-display text-zinc-100">
+					<h1 className="type-display-lg motion-enter motion-delay-2 mt-4 font-display text-fg">
 						AI tooling that fits how your team works.
 					</h1>
-					<p className="type-lead measure motion-enter motion-delay-3 mt-6 text-zinc-300">
+					<p className="type-lead measure motion-enter motion-delay-3 mt-6 text-muted">
 						I help teams decide where AI belongs in the workflow, choose the
 						right tools, and put practical guardrails around adoption without
 						slowing delivery.
@@ -25,14 +25,14 @@ export default function ServicesPage() {
 					<Card>
 						<div className="relative flex flex-col items-start gap-6 p-6 sm:p-8">
 							<div className="z-10 flex flex-col">
-								<span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-zinc-100 break-words">
+								<span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-fg break-words">
 									Workflow design
 								</span>
-								<span className="type-label mt-3 text-zinc-400">
+								<span className="type-label mt-3 text-muted">
 									Tooling and guardrails
 								</span>
 							</div>
-							<p className="type-body z-10 text-zinc-300">
+							<p className="type-body z-10 text-muted">
 								We map where AI actually helps, where it adds drag, and what
 								needs review, policy, or human judgment. The result is a setup
 								that matches your team, your stack, and the way you ship.
@@ -45,16 +45,17 @@ export default function ServicesPage() {
 					<Card>
 						<div className="relative flex flex-col items-start gap-6 p-6 sm:p-8">
 							<div className="z-10 flex flex-col">
-								<span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-zinc-100 break-words">
+								<span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-fg break-words">
 									Pilot planning
 								</span>
-								<span className="type-label mt-3 text-zinc-400">
+								<span className="type-label mt-3 text-muted">
 									Rollout and measurement
 								</span>
 							</div>
-							<p className="type-body z-10 text-zinc-300">
-								We define a first rollout that is small enough to ship, measurable
-								enough to learn from, and practical enough to expand if it works.
+							<p className="type-body z-10 text-muted">
+								We define a first rollout that is small enough to ship,
+								measurable enough to learn from, and practical enough to expand
+								if it works.
 							</p>
 							<Link href="/contact" className="type-label ui-btn">
 								Contact
@@ -64,14 +65,14 @@ export default function ServicesPage() {
 					<Card>
 						<div className="relative flex flex-col items-start gap-6 p-6 sm:p-8">
 							<div className="z-10 flex flex-col">
-								<span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-zinc-100 break-words">
+								<span className="font-display text-[clamp(1.25rem,2.2vw,1.85rem)] leading-[1.14] tracking-[-0.01em] text-fg break-words">
 									Team enablement
 								</span>
-								<span className="type-label mt-3 text-zinc-400">
+								<span className="type-label mt-3 text-muted">
 									Training and operating norms
 								</span>
 							</div>
-							<p className="type-body z-10 text-zinc-300">
+							<p className="type-body z-10 text-muted">
 								I help teams build shared habits around prompting, review, and
 								tool choice so adoption stays useful after the first launch.
 							</p>
