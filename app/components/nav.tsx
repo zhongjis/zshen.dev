@@ -24,13 +24,13 @@ export const Navigation: FC = () => {
 			<div
 				className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 [transition-timing-function:var(--ease-out-quart)] ${
 					isIntersecting
-						? "bg-transparent border-transparent"
-						: "bg-[#191c28]/75 backdrop-blur-md border-white/5"
+						? "border-transparent bg-transparent"
+						: "border-border bg-bg shadow-sm backdrop-blur-md"
 				}`}
 			>
 				<div className="container mx-auto flex items-center justify-between px-6 py-4 motion-fade">
 					<Link href="/" className="type-label ui-btn ui-btn-quiet -ml-3">
-						<ArrowLeft className="w-4 h-4" />
+						<ArrowLeft className="h-4 w-4" />
 						Home
 					</Link>
 
@@ -39,7 +39,7 @@ export const Navigation: FC = () => {
 							href="/services"
 							aria-current={pathname === "/services" ? "page" : undefined}
 							className={`type-label ui-btn ui-btn-quiet ${
-								pathname === "/services" ? "is-active" : "text-zinc-400"
+								pathname === "/services" ? "is-active" : "text-muted"
 							}`}
 						>
 							Services
@@ -48,7 +48,7 @@ export const Navigation: FC = () => {
 							href="/projects"
 							aria-current={pathname === "/projects" ? "page" : undefined}
 							className={`type-label ui-btn ui-btn-quiet ${
-								pathname === "/projects" ? "is-active" : "text-zinc-400"
+								pathname === "/projects" ? "is-active" : "text-muted"
 							}`}
 						>
 							Projects
@@ -57,7 +57,7 @@ export const Navigation: FC = () => {
 							href="/contact"
 							aria-current={pathname === "/contact" ? "page" : undefined}
 							className={`type-label ui-btn ui-btn-quiet ${
-								pathname === "/contact" ? "is-active" : "text-zinc-400"
+								pathname === "/contact" ? "is-active" : "text-muted"
 							}`}
 						>
 							Contact

@@ -39,14 +39,14 @@ export const Card: FC<PropsWithChildren> = ({ children }) => {
 			return;
 		}
 
-		glowOpacity.set(0.85);
+		glowOpacity.set(0.75);
 	}
 
 	function onBlurWithin() {
 		glowOpacity.set(0);
 	}
 
-	const maskImage = useMotionTemplate`radial-gradient(240px at ${mouseX}px ${mouseY}px, white, transparent)`;
+	const maskImage = useMotionTemplate`radial-gradient(260px at ${mouseX}px ${mouseY}px, white, transparent)`;
 	const style = { maskImage, WebkitMaskImage: maskImage };
 
 	return (
@@ -55,12 +55,11 @@ export const Card: FC<PropsWithChildren> = ({ children }) => {
 			onMouseLeave={onMouseLeave}
 			onFocusCapture={onFocusWithin}
 			onBlurCapture={onBlurWithin}
-			className="group relative overflow-hidden rounded-3xl border border-[#2a3349] bg-[#212633]/80 transition-all duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1 hover:border-[#c59756]/55 hover:bg-[#2b3243]/90 motion-reduce:hover:translate-y-0"
+			className="editorial-card group transition-all duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1 hover:border-accent motion-reduce:hover:translate-y-0"
 		>
 			<div className="pointer-events-none">
-				<div className="absolute inset-0 z-0 bg-gradient-to-b from-white/[0.03] via-transparent to-transparent" />
 				<motion.div
-					className="absolute inset-0 z-10 bg-gradient-to-br from-[#dfb479]/45 via-[#8f6e3d]/10 to-transparent transition duration-700"
+					className="absolute inset-0 z-10 bg-[radial-gradient(circle,var(--accent-soft),transparent_62%)] transition duration-700"
 					style={{ ...style, opacity: prefersReducedMotion ? 0 : glowOpacity }}
 				/>
 			</div>
