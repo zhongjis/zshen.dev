@@ -1,79 +1,61 @@
+import Link from "next/link";
 import type * as React from "react";
 import * as runtime from "react/jsx-runtime";
-import Link from "next/link";
 
 function clsx(...args: (string | undefined | null | false)[]) {
 	return args.filter(Boolean).join(" ");
 }
 
 const components = {
-	h1: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLHeadingElement>) => (
+	h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h1
 			className={clsx(
-				"type-display-lg mt-2 scroll-m-20 font-display text-zinc-100",
+				"type-display-lg mt-2 scroll-m-20 font-display text-fg",
 				className,
 			)}
 			{...props}
 		/>
 	),
-	h2: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLHeadingElement>) => (
+	h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h2
 			className={clsx(
-				"type-display-md mt-10 scroll-m-20 border-b border-b-zinc-700 pb-2 font-display text-zinc-100 first:mt-0",
+				"type-display-md mt-10 scroll-m-20 border-b border-b-border pb-3 font-display text-fg first:mt-0",
 				className,
 			)}
 			{...props}
 		/>
 	),
-	h3: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLHeadingElement>) => (
+	h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h3
 			className={clsx(
-				"mt-8 scroll-m-20 text-2xl font-display text-zinc-100",
+				"mt-8 scroll-m-20 font-display text-2xl text-fg",
 				className,
 			)}
 			{...props}
 		/>
 	),
-	h4: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLHeadingElement>) => (
+	h4: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h4
 			className={clsx(
-				"mt-8 scroll-m-20 text-xl font-display text-zinc-100",
+				"mt-8 scroll-m-20 font-display text-xl text-fg",
 				className,
 			)}
 			{...props}
 		/>
 	),
-	h5: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLHeadingElement>) => (
+	h5: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h5
 			className={clsx(
-				"mt-8 scroll-m-20 text-lg font-display text-zinc-100",
+				"mt-8 scroll-m-20 font-display text-lg text-fg",
 				className,
 			)}
 			{...props}
 		/>
 	),
-	h6: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLHeadingElement>) => (
+	h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
 		<h6
 			className={clsx(
-				"mt-8 scroll-m-20 text-base font-display text-zinc-100",
+				"mt-8 scroll-m-20 font-display text-base text-fg",
 				className,
 			)}
 			{...props}
@@ -85,18 +67,18 @@ const components = {
 	}: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
 		<Link
 			className={clsx(
-				"text-zinc-100 underline decoration-[#d8a55f]/70 underline-offset-4 transition-all duration-200 hover:text-[#d8a55f] focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#191c28]",
+				"text-fg underline decoration-accent underline-offset-4 transition-all duration-200 hover:text-accent focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg",
 				className,
 			)}
 			{...(props as React.ComponentProps<typeof Link>)}
 		/>
 	),
-	p: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLParagraphElement>) => (
+	p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
 		<p
-			className={clsx("type-body leading-7 text-zinc-300 [&:not(:first-child)]:mt-6", className)}
+			className={clsx(
+				"type-body leading-7 text-muted [&:not(:first-child)]:mt-6",
+				className,
+			)}
 			{...props}
 		/>
 	),
@@ -107,7 +89,10 @@ const components = {
 		<ol className={clsx("my-6 ml-6 list-decimal", className)} {...props} />
 	),
 	li: ({ className, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-		<li className={clsx("mt-2", className)} {...props} />
+		<li
+			className={clsx("mt-2 text-muted marker:text-accent", className)}
+			{...props}
+		/>
 	),
 	blockquote: ({
 		className,
@@ -115,66 +100,51 @@ const components = {
 	}: React.HTMLAttributes<HTMLQuoteElement>) => (
 		<blockquote
 			className={clsx(
-				"mt-6 border-l-2 border-[#d8a55f]/60 pl-6 italic text-zinc-300 [&>*]:text-zinc-300",
+				"mt-6 border-l-2 border-accent pl-6 text-muted [&>*]:text-muted",
 				className,
 			)}
 			{...props}
 		/>
 	),
 	hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
-	<hr className="my-4 border-zinc-700 md:my-8" {...props} />
+		<hr className="my-4 border-border md:my-8" {...props} />
 	),
-	table: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLTableElement>) => (
-		<div className="w-full my-6 overflow-y-auto">
+	table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+		<div className="my-6 w-full overflow-y-auto">
 			<table className={clsx("w-full", className)} {...props} />
 		</div>
 	),
-	tr: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLTableRowElement>) => (
+	tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
 		<tr
 			className={clsx(
-				"m-0 border-t border-zinc-700 p-0 even:bg-zinc-800/35",
+				"m-0 border-t border-border p-0 even:bg-surface",
 				className,
 			)}
 			{...props}
 		/>
 	),
-	th: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLTableCellElement>) => (
+	th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
 		<th
 			className={clsx(
-				"border border-zinc-700 px-4 py-2 text-left font-semibold text-zinc-100 [&[align=center]]:text-center [&[align=right]]:text-right",
+				"border border-border px-4 py-2 text-left font-semibold text-fg [&[align=center]]:text-center [&[align=right]]:text-right",
 				className,
 			)}
 			{...props}
 		/>
 	),
-	td: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLTableCellElement>) => (
+	td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
 		<td
 			className={clsx(
-				"border border-zinc-700 px-4 py-2 text-left text-zinc-300 [&[align=center]]:text-center [&[align=right]]:text-right",
+				"border border-border px-4 py-2 text-left text-muted [&[align=center]]:text-center [&[align=right]]:text-right",
 				className,
 			)}
 			{...props}
 		/>
 	),
-	pre: ({
-		className,
-		...props
-	}: React.HTMLAttributes<HTMLPreElement>) => (
+	pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => (
 		<pre
 			className={clsx(
-				"mt-6 mb-4 overflow-x-auto rounded-lg bg-zinc-900 py-4",
+				"mb-4 mt-6 overflow-x-auto rounded-2xl border border-border bg-surface py-4 shadow-sm",
 				className,
 			)}
 			{...props}
@@ -183,7 +153,7 @@ const components = {
 	code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => (
 		<code
 			className={clsx(
-				"relative rounded border border-zinc-700 bg-zinc-800/60 px-[0.36rem] py-[0.2rem] font-mono text-sm text-zinc-200",
+				"relative rounded border border-border bg-surface px-[0.36rem] py-[0.2rem] font-mono text-sm text-fg",
 				className,
 			)}
 			{...props}

@@ -8,12 +8,12 @@ export function useMDXComponents(components: MdxComponents): MdxComponents {
 	return {
 		// Allows customizing built-in components, e.g. to add styling.
 		h1: ({ children }: PropsWithChildren) => (
-			<h1 className="type-display-md mt-2 font-display text-zinc-100 md:text-center">
+			<h1 className="type-display-md mt-2 font-display text-fg md:text-center">
 				{children}
 			</h1>
 		),
 		h2: ({ children }: PropsWithChildren) => (
-			<h2 className="type-display-md mt-8 font-display text-zinc-50">{children}</h2>
+			<h2 className="type-display-md mt-8 font-display text-fg">{children}</h2>
 		),
 		...components,
 	};
