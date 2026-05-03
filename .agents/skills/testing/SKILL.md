@@ -1,6 +1,7 @@
 ---
 name: testing
-description: Comprehensive testing guidance for Dota2 Worker Web with Vitest and agent-browser. Use when writing tests for: (1) Database models and Prisma queries, (2) tRPC routers and server-side logic, (3) React components and UI, (4) API integrations and OpenDota interactions, (5) E2E browser testing and verification. Assumes Vitest is configured. IMPORTANT: For any browser-related testing, verification, or automation, use agent-browser CLI.
+description: >-
+  Comprehensive testing guidance for Dota2 Worker Web with Vitest and agent-browser. Use when writing tests for: (1) Database models and Prisma queries, (2) tRPC routers and server-side logic, (3) React components and UI, (4) API integrations and OpenDota interactions, (5) E2E browser testing and verification. Assumes Vitest is configured. IMPORTANT: For any browser-related testing, verification, or automation, use agent-browser CLI.
 ---
 
 # Testing
@@ -34,12 +35,12 @@ bun test --ui
 
 ### Test Types
 
-| Type | When to Use | Location |
-|------|-------------|----------|
-| Database Model | Prisma models, queries, data transformations | `src/server/` |
-| tRPC Router | API endpoints, server actions, context logic | `src/server/` |
-| React Component | UI components, user interactions, rendering | `src/app/` |
-| Utility Functions | Pure functions, helpers, formatters | Anywhere |
+| Type              | When to Use                                  | Location      |
+| ----------------- | -------------------------------------------- | ------------- |
+| Database Model    | Prisma models, queries, data transformations | `src/server/` |
+| tRPC Router       | API endpoints, server actions, context logic | `src/server/` |
+| React Component   | UI components, user interactions, rendering  | `src/app/`    |
+| Utility Functions | Pure functions, helpers, formatters          | Anywhere      |
 
 ## Core Principles
 
@@ -47,30 +48,30 @@ bun test --ui
 2. **One Assertion**: Focus on one behavior per test
 3. **Descriptive Names**: Test names should describe what they verify
 4. **Isolation**: Tests should not depend on each other
-4. **Fast**: Unit tests should run quickly (<100ms)
-5. **Clear**: Test intent should be obvious from reading it
+5. **Fast**: Unit tests should run quickly (<100ms)
+6. **Clear**: Test intent should be obvious from reading it
 
 ## Test Structure
 
 ### Basic Template
 
 ```typescript
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect } from "vitest";
 
-describe('FeatureName', () => {
-  describe('methodOrBehavior', () => {
-    it('should do X when Y', () => {
+describe("FeatureName", () => {
+  describe("methodOrBehavior", () => {
+    it("should do X when Y", () => {
       // Arrange
-      const input = setupTestState()
+      const input = setupTestState();
 
       // Act
-      const result = functionUnderTest(input)
+      const result = functionUnderTest(input);
 
       // Assert
-      expect(result).toBe(expected)
-    })
-  })
-})
+      expect(result).toBe(expected);
+    });
+  });
+});
 ```
 
 ## Mocking Patterns
@@ -79,13 +80,13 @@ describe('FeatureName', () => {
 
 ```typescript
 // Mock an entire module
-vi.mock('./api', () => ({
-  fetchData: vi.fn(() => mockData)
-}))
+vi.mock("./api", () => ({
+  fetchData: vi.fn(() => mockData),
+}));
 
 // Mock specific function
-const mockFn = vi.fn()
-mockFn.mockReturnValue(42)
+const mockFn = vi.fn();
+mockFn.mockReturnValue(42);
 ```
 
 ### Database Mocks
@@ -93,13 +94,14 @@ mockFn.mockReturnValue(42)
 ```typescript
 const prismaMock = {
   user: { findMany: vi.fn() },
-  match: { findUnique: vi.fn() }
-}
+  match: { findUnique: vi.fn() },
+};
 ```
 
 ## Advanced Patterns
 
 See [references/](references/) for detailed guides:
+
 - Database Model testing → [db-model-test.md](references/db-model-test.md)
 - tRPC Router testing → [trpc-router-test.md](references/trpc-router-test.md) ⭐
 - React Component testing → [react-component-test.md](references/react-component-test.md) ⭐
@@ -118,29 +120,29 @@ See [references/](references/) for detailed guides:
 ### Testing Error Cases
 
 ```typescript
-it('should throw when invalid input', () => {
-  expect(() => validateInput(null)).toThrow('Invalid input')
-})
+it("should throw when invalid input", () => {
+  expect(() => validateInput(null)).toThrow("Invalid input");
+});
 ```
 
 ### Testing Async Functions
 
 ```typescript
-it('should fetch data', async () => {
-  const result = await fetchData('id-123')
-  expect(result).toEqual(mockData)
-})
+it("should fetch data", async () => {
+  const result = await fetchData("id-123");
+  expect(result).toEqual(mockData);
+});
 ```
 
 ### Testing with Time
 
 ```typescript
-it('should handle timeouts', async () => {
-  vi.useFakeTimers()
-  vi.advanceTimersByTime(1000)
+it("should handle timeouts", async () => {
+  vi.useFakeTimers();
+  vi.advanceTimersByTime(1000);
   // ... assertions
-  vi.useRealTimers()
-})
+  vi.useRealTimers();
+});
 ```
 
 ## Running Tests
@@ -218,13 +220,13 @@ src/
 
 ### When to Use Browser Testing
 
-| Scenario | Action |
-|----------|--------|
+| Scenario                    | Action                                     |
+| --------------------------- | ------------------------------------------ |
 | Verify UI renders correctly | `agent-browser open <url>` + `snapshot -i` |
-| Test user interactions | Use refs from snapshot to click/fill |
-| Capture visual state | `agent-browser screenshot` |
-| Debug failing E2E tests | Inspect page state with snapshots |
-| Verify deployed changes | Open URL and check elements |
+| Test user interactions      | Use refs from snapshot to click/fill       |
+| Capture visual state        | `agent-browser screenshot`                 |
+| Debug failing E2E tests     | Inspect page state with snapshots          |
+| Verify deployed changes     | Open URL and check elements                |
 
 ### Quick Reference
 
@@ -278,12 +280,12 @@ agent-browser screenshot results.png
 
 ### Comparison: agent-browser vs Playwright
 
-| Use Case | Tool | Why |
-|----------|------|-----|
-| AI-driven verification | `agent-browser` | Designed for AI agents, ref-based interaction |
-| Scripted E2E tests | `pnpm test:e2e` (Playwright) | Existing test suite, CI integration |
-| Quick UI checks | `agent-browser` | Fast, interactive, no test file needed |
-| Regression testing | Playwright | Automated, repeatable, assertions |
+| Use Case               | Tool                         | Why                                           |
+| ---------------------- | ---------------------------- | --------------------------------------------- |
+| AI-driven verification | `agent-browser`              | Designed for AI agents, ref-based interaction |
+| Scripted E2E tests     | `pnpm test:e2e` (Playwright) | Existing test suite, CI integration           |
+| Quick UI checks        | `agent-browser`              | Fast, interactive, no test file needed        |
+| Regression testing     | Playwright                   | Automated, repeatable, assertions             |
 
 ### Browser Testing Best Practices
 
@@ -292,3 +294,4 @@ agent-browser screenshot results.png
 - **Screenshot on failure**: Capture state for debugging
 - **Wait for network**: Use `agent-browser wait --load networkidle` for API calls
 - **Clean up**: Close browser when done to free resources
+
