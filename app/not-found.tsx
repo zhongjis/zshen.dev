@@ -12,11 +12,11 @@ export default function NotFound() {
 					This page is not in the archive.
 				</h1>
 				<p className="type-lead measure mt-6 text-muted">
-					The link might be old, or the page has moved. Jump back to the
-					projects index and continue browsing.
+					The link might be old, or the page has moved. Jump back home and
+					continue browsing.
 				</p>
-				<Link href="/projects" className="type-label ui-btn mt-10">
-					Back to projects {"->"}
+				<Link href="/" className="type-label ui-btn mt-10">
+					Back home {"->"}
 				</Link>
 			</div>
 		</div>

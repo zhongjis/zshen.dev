@@ -50,9 +50,9 @@ export const Header: FC<Props> = ({ project, views }) => {
 				}`}
 			>
 				<div className="container mx-auto flex items-center justify-between px-6 py-5 motion-fade">
-					<Link href="/projects" className="type-label ui-btn ui-btn-quiet">
+					<Link href="/#sparks" className="type-label ui-btn ui-btn-quiet">
 						<ArrowLeft className="h-4 w-4" />
-						Projects
+						Sparks
 					</Link>
 
 					<div className="flex items-center gap-5">

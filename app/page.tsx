@@ -11,11 +11,11 @@ const navigation = [
 const consulting = [
 	{
 		title: "AI tooling",
-		href: "/services",
+		href: "mailto:zhongjie.x.shen@gmail.com",
 	},
 	{
 		title: "Software Contracting",
-		href: "/services",
+		href: "mailto:zhongjie.x.shen@gmail.com",
 	},
 	{
 		title: "Home Lab",
@@ -38,7 +38,7 @@ const sparks = [
 	{
 		title: "AI tooling",
 		description: "My awesome pi-harness",
-		href: "/services",
+		href: "#consulting",
 	},
 ];
 
