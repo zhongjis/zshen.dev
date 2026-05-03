@@ -40,41 +40,41 @@ export default async function ProjectsPage() {
 			<div className="container mx-auto px-6 pt-28 sm:pt-32 lg:px-10">
 				<div className="grid gap-10 lg:grid-cols-[1.25fr_0.75fr] lg:items-end">
 					<div className="motion-enter">
-						<p className="type-kicker motion-fade motion-delay-1 text-[#d8a55f]">
+						<p className="type-kicker motion-fade motion-delay-1 text-accent">
 							Projects
 						</p>
-						<h1 className="type-display-lg motion-enter motion-delay-2 mt-4 max-w-3xl font-display text-zinc-100">
+						<h1 className="type-display-lg motion-enter motion-delay-2 mt-4 max-w-3xl font-display text-fg">
 							Projects, client work, and build notes.
 						</h1>
-						<p className="type-lead measure motion-enter motion-delay-3 mt-6 text-zinc-300">
+						<p className="type-lead measure motion-enter motion-delay-3 mt-6 text-muted">
 							A running archive of client work, personal projects, and posts
 							about what I built and learned along the way.
 						</p>
 					</div>
 
-					<div className="motion-enter motion-delay-4 rounded-3xl border border-[#2d3650] bg-[#212633]/85 p-6 transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1">
-						<p className="type-label text-zinc-400">Published</p>
-						<p className="type-metric mt-3 font-display text-zinc-100">
+					<div className="editorial-card motion-enter motion-delay-4 p-6 transition-transform duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1">
+						<p className="type-label text-muted">Published</p>
+						<p className="type-metric mt-3 font-display text-fg">
 							{allPublished.length}
 						</p>
-						<p className="type-body-sm mt-3 text-zinc-400">
+						<p className="type-body-sm mt-3 text-muted">
 							Live entries currently visible in this archive.
 						</p>
 					</div>
 				</div>
 
-				<div className="my-10 h-px bg-gradient-to-r from-transparent via-[#43506d] to-transparent" />
+				<div className="editorial-rule my-12" />
 
 				{featured ? (
 					<div className="motion-enter motion-delay-2 grid gap-8 lg:grid-cols-[1.35fr_0.65fr]">
 						<Card>
 							<Link
 								href={`/projects/${featured.slug}`}
-								className="group block focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d8a55f] focus-visible:ring-offset-2 focus-visible:ring-offset-[#191c28]"
+								className="group block focus-visible:rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
 							>
 								<article className="relative flex h-full min-h-[22rem] flex-col justify-between p-6 sm:p-8">
 									<div className="flex items-center justify-between gap-2">
-										<div className="type-label num-tabular text-zinc-300">
+										<div className="type-label num-tabular text-muted">
 											{featured.date ? (
 												<time dateTime={new Date(featured.date).toISOString()}>
 													{Intl.DateTimeFormat(undefined, {
@@ -85,7 +85,7 @@ export default async function ProjectsPage() {
 												<span>Soon</span>
 											)}
 										</div>
-										<span className="type-label num-tabular flex items-center gap-1 text-zinc-400">
+										<span className="type-label num-tabular flex items-center gap-1 text-muted">
 											<Eye className="h-4 w-4" />
 											{Intl.NumberFormat("en-US", {
 												notation: "compact",
@@ -94,16 +94,16 @@ export default async function ProjectsPage() {
 									</div>
 
 									<div className="mt-8">
-										<h2 className="type-display-md font-display text-zinc-100 transition-colors group-hover:text-white">
+										<h2 className="type-display-md font-display text-fg transition-colors group-hover:text-accent">
 											{featured.title}
 										</h2>
-										<p className="type-body measure mt-5 text-zinc-300 transition-colors group-hover:text-zinc-200">
+										<p className="type-body measure mt-5 text-muted transition-colors group-hover:text-fg">
 											{featured.description ||
 												"A practical build shaped by product judgment and engineering rigor."}
 										</p>
 									</div>
 
-									<span className="type-label mt-10 inline-flex items-center text-[#d8a55f] transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1">
+									<span className="type-label mt-10 inline-flex items-center text-accent transition-transform duration-300 [transition-timing-function:var(--ease-out-quart)] group-hover:translate-x-1">
 										Read more {"->"}
 									</span>
 								</article>
@@ -131,8 +131,8 @@ export default async function ProjectsPage() {
 					<div className="motion-enter" style={{ animationDelay: "240ms" }}>
 						<Card>
 							<div className="p-8 sm:p-10">
-								<p className="type-label text-zinc-400">No entries yet</p>
-								<p className="type-display-md mt-4 font-display text-zinc-100">
+								<p className="type-label text-muted">No entries yet</p>
+								<p className="type-display-md mt-4 font-display text-fg">
 									Projects are being prepared.
 								</p>
 							</div>
