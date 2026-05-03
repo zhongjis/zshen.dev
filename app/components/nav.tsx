@@ -1,12 +1,10 @@
 "use client";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { type FC, useEffect, useRef, useState } from "react";
 
 export const Navigation: FC = () => {
 	const ref = useRef<HTMLElement>(null);
-	const pathname = usePathname();
 	const [isIntersecting, setIntersecting] = useState(true);
 
 	useEffect(() => {
@@ -33,36 +31,6 @@ export const Navigation: FC = () => {
 						<ArrowLeft className="h-4 w-4" />
 						Home
 					</Link>
-
-					<div className="flex items-center gap-1 sm:gap-2">
-						<Link
-							href="/services"
-							aria-current={pathname === "/services" ? "page" : undefined}
-							className={`type-label ui-btn ui-btn-quiet ${
-								pathname === "/services" ? "is-active" : "text-muted"
-							}`}
-						>
-							Services
-						</Link>
-						<Link
-							href="/projects"
-							aria-current={pathname === "/projects" ? "page" : undefined}
-							className={`type-label ui-btn ui-btn-quiet ${
-								pathname === "/projects" ? "is-active" : "text-muted"
-							}`}
-						>
-							Projects
-						</Link>
-						<Link
-							href="/contact"
-							aria-current={pathname === "/contact" ? "page" : undefined}
-							className={`type-label ui-btn ui-btn-quiet ${
-								pathname === "/contact" ? "is-active" : "text-muted"
-							}`}
-						>
-							Contact
-						</Link>
-					</div>
 				</div>
 			</div>
 		</header>
