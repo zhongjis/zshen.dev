@@ -89,24 +89,7 @@ export default function Home() {
 			<aside className="portfolio-rail motion-enter" aria-label="Site identity and navigation">
 				<Link href="/" className="mark-row" aria-label="Home">
 					<span className="mark" aria-hidden="true">
-						<svg className="panda-mark" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
-							<rect x="2" y="1" width="3" height="4" fill="var(--bg)" />
-							<rect x="11" y="1" width="3" height="4" fill="var(--bg)" />
-							<rect x="4" y="2" width="8" height="1" fill="var(--fg)" />
-							<rect x="3" y="3" width="10" height="2" fill="var(--fg)" />
-							<rect x="2" y="5" width="12" height="6" fill="var(--fg)" />
-							<rect x="3" y="11" width="10" height="2" fill="var(--fg)" />
-							<rect x="4" y="13" width="8" height="1" fill="var(--fg)" />
-							<rect x="4" y="6" width="3" height="3" fill="var(--bg)" />
-							<rect x="9" y="6" width="3" height="3" fill="var(--bg)" />
-							<rect x="5" y="7" width="1" height="1" fill="var(--fg)" />
-							<rect x="10" y="7" width="1" height="1" fill="var(--fg)" />
-							<rect x="3" y="9" width="1" height="1" fill="var(--seal)" />
-							<rect x="12" y="9" width="1" height="1" fill="var(--seal)" />
-							<rect x="7" y="9" width="2" height="1" fill="var(--bg)" />
-							<rect x="6" y="10" width="1" height="1" fill="var(--bg)" />
-							<rect x="9" y="10" width="1" height="1" fill="var(--bg)" />
-						</svg>
+						<img className="panda-mark" src="/panda-mark.png" alt="" draggable={false} />
 					</span>
 				</Link>
 
