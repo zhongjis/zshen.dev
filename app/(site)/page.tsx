@@ -1,6 +1,7 @@
 import Link from "next/link";
 import ParticleOrbCSS from "../components/particle-orb";
 import { ContactTrigger } from "./_components/contact-trigger";
+import { projects } from ".velite";
 
 const consulting = [
 	{
@@ -26,19 +27,17 @@ const consulting = [
 	},
 ];
 
-const thoughts = [
-	{
-		title: "Kubernetes at home",
-		description: "Rebuildable machines. Quiet operations. No mystery state.",
-		href: "/projects/home-kubernetes-cluster",
-	},
-	{
-		title: "AI tooling",
-		description:
-			"Notes on agent tools, eval loops, and the small systems around them.",
-		href: "#consulting",
-	},
-];
+const thoughts = projects
+	.filter((project) => project.published)
+	.sort(
+		(a, b) =>
+			Date.parse(b.date ?? "1970-01-01") - Date.parse(a.date ?? "1970-01-01"),
+	)
+	.map((project) => ({
+		title: project.title,
+		description: project.description,
+		href: project.path,
+	}));
 
 const elsewhere = [
 	{
@@ -89,7 +88,7 @@ export default function Home() {
 							<p>
 								By night, I build AI tools and maintain a home lab on{" "}
 								<Link
-									href="/projects/home-kubernetes-cluster"
+									href="/thoughts/home-kubernetes-cluster"
 									className="text-link"
 								>
 									K3s and Nix
@@ -106,10 +105,6 @@ export default function Home() {
 
 					<figure className="weather-field" aria-label="Particle Orb CSS">
 						<ParticleOrbCSS />
-						<figcaption className="orb-caption">
-							Under the calm surface: rebuildable machines, deliberate
-							interfaces, reliable tools.
-						</figcaption>
 					</figure>
 				</div>
 			</section>
@@ -151,33 +146,19 @@ export default function Home() {
 					</div>
 				</header>
 				<div className="portfolio-list">
-					{thoughts.map((item, index) =>
-						item.href.startsWith("#") ? (
-							<a
-								key={item.href + item.title}
-								href={item.href}
-								className="portfolio-row project-row group"
-							>
-								<div>
-									<h3>{item.title}</h3>
-									<p>{item.description}</p>
-								</div>
-								<span className="small-meta">{twoDigit(index)}</span>
-							</a>
-						) : (
-							<Link
-								key={item.href + item.title}
-								href={item.href}
-								className="portfolio-row project-row group"
-							>
-								<div>
-									<h3>{item.title}</h3>
-									<p>{item.description}</p>
-								</div>
-								<span className="small-meta">{twoDigit(index)}</span>
-							</Link>
-						),
-					)}
+					{thoughts.map((item, index) => (
+						<Link
+							key={item.href + item.title}
+							href={item.href}
+							className="portfolio-row project-row group"
+						>
+							<div>
+								<h3>{item.title}</h3>
+								<p>{item.description}</p>
+							</div>
+							<span className="small-meta">{twoDigit(index)}</span>
+						</Link>
+					))}
 				</div>
 			</section>
 
