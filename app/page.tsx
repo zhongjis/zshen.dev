@@ -123,15 +123,20 @@ export default function Home() {
 							</p>
 							<div className="intro-copy">
 								<p>
-									I build AI tooling that keeps humans in the loop, enterprise
-									software that stays understandable, Nix systems that move cleanly
-									between machines, and craft-minded interfaces that keep the surface
-									quiet.
+									I'm a developer in San Jose, currently working at Adobe Inc.
 								</p>
 								<p>
-									The surface stays calm. Under it: rebuildable machines,
-									deliberate interfaces, and tools shaped until they feel reliable
-									enough to disappear.
+									By day, I help enterprise teams build custom software for complex,
+									high-stakes work.
+								</p>
+								<p>
+									By night, I build AI tools and maintain a home lab on k3s and Nix:
+									small systems that keep me curious.
+								</p>
+								<p>
+									My belief: the surface should stay calm. Under it: rebuildable
+									machines, deliberate interfaces, and tools shaped until they feel
+									reliable enough to disappear.
 								</p>
 							</div>
 							<div className="keyword-notes" aria-label="Supporting keywords">
