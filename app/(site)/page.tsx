@@ -160,18 +160,19 @@ export default function Home() {
 						<p className="type-kicker">Misc</p>
 						<h2 id="misc-title">Misc</h2>
 					</div>
-					<p className="small-meta">01</p>
 				</header>
-				<div className="misc-links">
-					<Link
-						href="https://github.com/zhongjis/nix-config"
-						className="text-link"
-						target="_blank"
-						rel="noopener noreferrer"
-					>
-						https://github.com/zhongjis/nix-config
-					</Link>
-				</div>
+				<ul className="misc-links">
+					<li>
+						<Link
+							href="https://github.com/zhongjis/nix-config"
+							className="text-link"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							https://github.com/zhongjis/nix-config
+						</Link>
+					</li>
+				</ul>
 			</section>
 		</>
 	);
