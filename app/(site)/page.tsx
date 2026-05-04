@@ -12,7 +12,9 @@ const consulting = [
 	},
 	{
 		title: "Home Lab",
-		href: "/projects/home-kubernetes-cluster",
+		href: "#consulting",
+		meta: "Contact",
+		action: "Highlight contact links",
 	},
 ];
 
