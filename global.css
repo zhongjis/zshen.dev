@@ -385,6 +385,7 @@
 		margin-bottom: 34px;
 	}
 
+	.site-shell-head h1,
 	.portfolio-panel h1,
 	.portfolio-panel h2,
 	.portfolio-panel h3,
@@ -392,6 +393,7 @@
 		margin-top: 0;
 	}
 
+	.site-shell-head h1,
 	.portfolio-panel h1,
 	.portfolio-panel h2,
 	.portfolio-panel h3 {
@@ -400,6 +402,7 @@
 		text-wrap: balance;
 	}
 
+	.site-shell-head h1,
 	.portfolio-panel h1 {
 		margin-bottom: 8px;
 		font-size: var(--text-display-xl);
