@@ -1,8 +1,8 @@
-import { defineCollection, defineConfig, s } from "velite";
-import remarkGfm from "remark-gfm";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import remarkGfm from "remark-gfm";
+import { defineCollection, defineConfig, s } from "velite";
 
 const projects = defineCollection({
 	name: "Project",
@@ -20,12 +20,11 @@ const projects = defineCollection({
 		})
 		.transform((data) => ({
 			...data,
-			description:
-				data.description?.trim() || "A practical build by zshen.",
+			description: data.description?.trim() || "A practical build by zshen.",
 			// Match Contentlayer's computed slug: strip the first path segment (e.g. "projects/foo" -> "foo")
 			slug: data.slug.split("/").slice(1).join("/"),
-			// Match Contentlayer's computed path: "/{flattenedPath}"
-			path: `/projects/${data.slug.split("/").slice(1).join("/")}`,
+			// Public content URLs live under /thoughts/{slug}.
+			path: `/thoughts/${data.slug.split("/").slice(1).join("/")}`,
 		})),
 });
 
@@ -41,6 +40,10 @@ export default defineConfig({
 	collections: { projects },
 	mdx: {
 		remarkPlugins: [remarkGfm],
-		rehypePlugins: [rehypeSlug, [rehypePrettyCode, { theme: "github-dark" }], rehypeAutolinkHeadings],
+		rehypePlugins: [
+			rehypeSlug,
+			[rehypePrettyCode, { theme: "github-dark" }],
+			rehypeAutolinkHeadings,
+		],
 	},
 });

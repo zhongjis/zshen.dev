@@ -8,6 +8,16 @@ if (!process.env.VELITE_STARTED && (isDev || isBuild)) {
 }
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+	async redirects() {
+		return [
+			{
+				source: "/projects/:path*",
+				destination: "/thoughts/:path*",
+				permanent: true,
+			},
+		];
+	},
+};
 
 export default nextConfig;
