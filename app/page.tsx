@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
 const navigation = [
-	{ name: "Index", href: "#index" },
+	{ name: "About me", href: "#index" },
 	{ name: "Consulting", href: "#consulting" },
 	{ name: "Sparks", href: "#sparks" },
 	{ name: "Misc", href: "#misc" },
@@ -43,24 +43,6 @@ const sparks = [
 	},
 ];
 
-const keywordNotes = [
-	{
-		label: "AI",
-		text: "Tooling that helps humans keep context, move faster, and still inspect the work.",
-	},
-	{
-		label: "Enterprise",
-		text: "Practical software for teams that need clarity, contracts, and maintainable operations.",
-	},
-	{
-		label: "Nix",
-		text: "Rebuildable environments and machines, with less mystery state between places.",
-	},
-	{
-		label: "Crafts",
-		text: "Small, meticulous improvements in type, color, workflow, and everyday reliability.",
-	},
-];
 
 const footerLinks = [
 	{
@@ -84,6 +66,18 @@ function twoDigit(index: number) {
 	return String(index + 1).padStart(2, "0");
 }
 
+function PrimaryNav({ className }: { className?: string }) {
+	return (
+		<nav className={`portfolio-nav ${className ?? ""}`} aria-label="Primary">
+			{navigation.map((item) => (
+				<a key={item.href} href={item.href} className="side-link">
+					{item.name}
+				</a>
+			))}
+		</nav>
+	);
+}
+
 export default function Home() {
 	return (
 		<div className="portfolio-shell relative isolate overflow-hidden">
@@ -94,13 +88,7 @@ export default function Home() {
 					</span>
 				</Link>
 
-				<nav className="portfolio-nav" aria-label="Primary">
-					{navigation.map((item) => (
-						<a key={item.href} href={item.href} className="side-link">
-							{item.name}
-						</a>
-					))}
-				</nav>
+				<PrimaryNav className="portfolio-nav-rail" />
 			</aside>
 
 			<div className="portfolio-content relative min-w-0">
@@ -111,8 +99,9 @@ export default function Home() {
 				>
 					<header className="panel-head">
 						<div>
-							<h1 id="index-title">Zhongjie Shen</h1>
+							<h1 id="index-title">ZHONGJIE SHEN</h1>
 						</div>
+							<PrimaryNav className="portfolio-nav-mobile" />
 					</header>
 
 					<div className="hero-grid">
@@ -124,29 +113,33 @@ export default function Home() {
 							</p>
 							<div className="intro-copy">
 								<p>
-									I'm a developer in San Jose, currently working at Adobe Inc.
+									I'm a developer in San Jose, currently working at {" "}
+									<Link
+										href="https://business.adobe.com/"
+										className="text-link"
+										target="_blank"
+										rel="noopener noreferrer"
+									>
+										Adobe for Business
+									</Link>
+									.
 								</p>
 								<p>
 									By day, I help enterprise teams build custom software for complex,
 									high-stakes work.
 								</p>
 								<p>
-									By night, I build AI tools and maintain a home lab on k3s and Nix:
-									small systems that keep me curious.
+									By night, I build AI tools and maintain a home lab on {" "}
+									<Link href="/projects/home-kubernetes-cluster" className="text-link">
+										K3s and Nix
+									</Link>
+									: small systems that keep me curious.
 								</p>
 								<p>
 									My belief: the surface should stay calm. Under it: rebuildable
 									machines, deliberate interfaces, and tools shaped until they feel
 									reliable enough to disappear.
 								</p>
-							</div>
-							<div className="keyword-notes" aria-label="Supporting keywords">
-								{keywordNotes.map((note) => (
-									<p key={note.label} className="keyword-note">
-										<strong>{note.label}</strong>
-										<span>{note.text}</span>
-									</p>
-								))}
 							</div>
 						</div>
 
@@ -167,6 +160,7 @@ export default function Home() {
 							<h2 id="consulting-title">Consulting</h2>
 						</div>
 						<p className="small-meta">01 / 03</p>
+						<PrimaryNav className="portfolio-nav-mobile" />
 					</header>
 					<div className="portfolio-list consulting-list">
 						{consulting.map((item, index) => (
@@ -189,6 +183,7 @@ export default function Home() {
 							<h2 id="sparks-title">Sparks</h2>
 						</div>
 						<p className="small-meta">Blogs</p>
+						<PrimaryNav className="portfolio-nav-mobile" />
 					</header>
 					<div className="portfolio-list">
 						{sparks.map((item, index) => (
@@ -214,21 +209,34 @@ export default function Home() {
 							<h2 id="misc-title">Misc</h2>
 						</div>
 						<p className="small-meta">01</p>
+						<PrimaryNav className="portfolio-nav-mobile" />
 					</header>
 					<div className="misc-links">
-						<Link
-							href="https://github.com/zhongjis/nix-config"
-							target="_blank"
-							rel="noopener noreferrer"
-						>
-							https://github.com/zhongjis/nix-config
-						</Link>
+					<Link
+						href="https://github.com/zhongjis/nix-config"
+						className="text-link"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						https://github.com/zhongjis/nix-config
+					</Link>
 					</div>
 				</section>
 			</div>
 
 			<footer className="portfolio-footer">
-				<span>© 2026 Zhongjie Shen</span>
+				<span>
+					© 2026 Zhongjie Shen · Design inspired by {" "}
+					<Link
+						href="https://mitchellh.com/"
+						className="text-link"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Mitchell Hashimoto
+					</Link>
+					.
+				</span>
 				{footerLinks.map((link) => (
 					<Link
 						key={link.href}
