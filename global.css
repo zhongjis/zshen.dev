@@ -725,6 +725,10 @@
 			var(--dur-mid) var(--ease-out-quart);
 	}
 
+	.portfolio-shell:has(.contact-trigger:hover) .contact-link {
+		color: var(--accent);
+	}
+
 	.contact-link:hover {
 		color: var(--accent);
 	}
