@@ -492,73 +492,55 @@
 		position: relative;
 		min-height: 356px;
 		overflow: visible;
+		perspective: 900px;
+		perspective-origin: 50% 50%;
+		transform-style: preserve-3d;
 	}
 
-	.hero-current {
+	.particle-orb {
+		--orb-size: 92px;
+		--orb-reach: calc(var(--orb-size) * 3);
 		position: absolute;
-		inset: -28px;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
 		pointer-events: none;
-		opacity: 0.84;
-		mix-blend-mode: screen;
-		mask-image: radial-gradient(circle at 50% 48%, var(--fg), transparent 72%);
+		transform-style: preserve-3d;
+		perspective: 320px;
+		perspective-origin: 50% 50%;
+		animation: particle-orb-rotate 14s linear infinite;
 	}
-
-	.current-thread {
+	.particle-orb-dot {
 		position: absolute;
-		inset: 0;
-		background: repeating-linear-gradient(
-			112deg,
-			transparent 0 18px,
-			color-mix(in oklch, var(--accent) 28%, transparent) 19px 20px,
-			transparent 21px 42px
-		);
-		filter: blur(0.2px);
-		transform-origin: 50% 50%;
-		animation: current-calm-to-wild 12s var(--ease-out-quint) infinite;
+		width: 2px;
+		height: 2px;
+		border-radius: 50%;
+		background: hsl(var(--hue) 82% var(--lightness));
+		box-shadow: 0 0 8px hsl(var(--hue) 82% var(--lightness) / 0.76);
+		opacity: 0;
+		transform-style: preserve-3d;
+		will-change: transform, opacity;
+		animation: particle-orb-flight 14s infinite;
+		animation-delay: var(--delay);
 	}
 
-	.current-thread-a {
-		clip-path: polygon(0 34%, 100% 8%, 100% 56%, 0 78%);
-	}
-
-	.current-thread-b {
-		background: repeating-linear-gradient(
-			72deg,
-			transparent 0 24px,
-			color-mix(in oklch, var(--fg) 18%, transparent) 25px 26px,
-			transparent 27px 54px
-		);
-		clip-path: polygon(6% 4%, 98% 38%, 92% 100%, 0 68%);
-		animation-delay: -3.8s;
-	}
-
-	.current-thread-c {
-		background: radial-gradient(
-			ellipse at 50% 50%,
-			color-mix(in oklch, var(--accent) 24%, transparent) 0 1px,
-			transparent 2px 13px
-		);
-		background-size: 18px 18px;
-		clip-path: polygon(12% 14%, 88% 0, 100% 82%, 22% 100%);
-		animation-delay: -7.2s;
-	}
-
-	@keyframes current-calm-to-wild {
-		0%,
-		54%,
+	@keyframes particle-orb-rotate {
 		100% {
-			opacity: 0.2;
-			transform: translate3d(0, 0, 0) rotate(-4deg) scale(0.96);
+			transform: rotateY(360deg) rotateX(360deg);
+		}
+	}
+
+	@keyframes particle-orb-flight {
+		0%,
+		100% {
+			opacity: 0.78;
+			transform: rotateZ(var(--neg-z)) rotateY(var(--y)) translateX(var(--orb-size)) rotateZ(var(--z));
 		}
 
-		68% {
-			opacity: 0.72;
-			transform: translate3d(-1.4rem, 0.9rem, 0) rotate(7deg) scale(1.08);
-		}
-
-		78% {
-			opacity: 0.48;
-			transform: translate3d(1rem, -0.7rem, 0) rotate(-11deg) scale(1.02);
+		50% {
+			opacity: 1;
+			transform: rotateZ(var(--neg-z)) rotateY(var(--y)) translateX(var(--orb-size)) rotateZ(var(--z));
 		}
 	}
 
@@ -919,6 +901,10 @@
 			margin-top: 8px;
 		}
 
+		.particle-orb {
+			--orb-size: 64px;
+		}
+
 		.keyword-note {
 			grid-template-columns: 1fr;
 			gap: 3px;
@@ -971,6 +957,17 @@
 		.motion-fade {
 			opacity: 1 !important;
 			animation: none !important;
+		}
+
+		.particle-orb {
+			animation: none !important;
+			transform: rotateY(18deg) rotateX(14deg);
+		}
+
+		.particle-orb-dot {
+			opacity: 0.82;
+			animation: none !important;
+			transform: rotateZ(var(--neg-z)) rotateY(var(--y)) translateX(var(--orb-size)) rotateZ(var(--z));
 		}
 	}
 }

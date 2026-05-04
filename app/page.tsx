@@ -1,3 +1,4 @@
+import ParticleOrbCSS from "./components/particle-orb";
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
@@ -149,12 +150,8 @@ export default function Home() {
 							</div>
 						</div>
 
-						<div className="weather-field" aria-label="Animated calm current becoming storm">
-							<div className="hero-current" aria-hidden="true">
-								<span className="current-thread current-thread-a" />
-								<span className="current-thread current-thread-b" />
-								<span className="current-thread current-thread-c" />
-							</div>
+						<div className="weather-field" aria-label="Particle Orb CSS">
+							<ParticleOrbCSS />
 						</div>
 					</div>
 				</section>
