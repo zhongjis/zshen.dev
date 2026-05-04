@@ -1,7 +1,7 @@
 import "../global.css";
+import { Analytics } from "@vercel/analytics/next";
 import { Agentation } from "agentation";
 import type { Metadata } from "next";
-import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://zshen.dev"),
