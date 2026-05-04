@@ -915,6 +915,16 @@
 			display: flex;
 			grid-column: 1 / -1;
 			margin-top: 2px;
+			padding-left: 0;
+		}
+
+		.portfolio-nav-mobile .side-link {
+			margin-left: 0;
+			padding-left: 0;
+		}
+
+		.portfolio-nav-mobile .side-link::before {
+			content: none;
 		}
 
 		.portfolio-content {
