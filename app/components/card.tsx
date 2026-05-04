@@ -1,43 +1,70 @@
 "use client";
 import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
+	motion,
+	useMotionTemplate,
+	useMotionValue,
+	useReducedMotion,
+	useSpring,
+} from "motion/react";
 
-import { MouseEventHandler, PropsWithChildren } from "react";
+import type { FC, MouseEvent, PropsWithChildren } from "react";
 
-export const Card: React.FC<PropsWithChildren> = ({ children }) => {
-  const mouseX = useSpring(0, { stiffness: 500, damping: 100 });
-  const mouseY = useSpring(0, { stiffness: 500, damping: 100 });
+export const Card: FC<PropsWithChildren> = ({ children }) => {
+	const prefersReducedMotion = useReducedMotion();
+	const mouseX = useSpring(0, { stiffness: 500, damping: 100 });
+	const mouseY = useSpring(0, { stiffness: 500, damping: 100 });
+	const glowOpacity = useMotionValue(0);
 
-  function onMouseMove({ currentTarget, clientX, clientY }: any) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-  const maskImage = useMotionTemplate`radial-gradient(240px at ${mouseX}px ${mouseY}px, white, transparent)`;
-  const style = { maskImage, WebkitMaskImage: maskImage };
+	function onMouseMove({
+		currentTarget,
+		clientX,
+		clientY,
+	}: MouseEvent<HTMLDivElement>) {
+		if (prefersReducedMotion) {
+			return;
+		}
 
-  return (
-    <div
-      onMouseMove={onMouseMove}
-      className="overflow-hidden relative duration-700 border rounded-xl hover:bg-zinc-800/10 group md:gap-8 hover:border-zinc-400/50 border-zinc-600 "
-    >
-      <div className="pointer-events-none">
-        <div className="absolute inset-0 z-0  transition duration-1000 [mask-image:linear-gradient(black,transparent)]" />
-        <motion.div
-          className="absolute inset-0 z-10  bg-gradient-to-br opacity-100  via-zinc-100/10  transition duration-1000 group-hover:opacity-50 "
-          style={style}
-        />
-        <motion.div
-          className="absolute inset-0 z-10 opacity-0 mix-blend-overlay transition duration-1000 group-hover:opacity-100"
-          style={style}
-        />
-      </div>
+		const { left, top } = currentTarget.getBoundingClientRect();
+		mouseX.set(clientX - left);
+		mouseY.set(clientY - top);
+		glowOpacity.set(1);
+	}
 
-      {children}
-    </div>
-  );
+	function onMouseLeave() {
+		glowOpacity.set(0);
+	}
+
+	function onFocusWithin() {
+		if (prefersReducedMotion) {
+			return;
+		}
+
+		glowOpacity.set(0.75);
+	}
+
+	function onBlurWithin() {
+		glowOpacity.set(0);
+	}
+
+	const maskImage = useMotionTemplate`radial-gradient(260px at ${mouseX}px ${mouseY}px, white, transparent)`;
+	const style = { maskImage, WebkitMaskImage: maskImage };
+
+	return (
+		<div
+			onMouseMove={onMouseMove}
+			onMouseLeave={onMouseLeave}
+			onFocusCapture={onFocusWithin}
+			onBlurCapture={onBlurWithin}
+			className="editorial-card group transition-all duration-500 [transition-timing-function:var(--ease-out-quint)] hover:-translate-y-1 hover:border-accent motion-reduce:hover:translate-y-0"
+		>
+			<div className="pointer-events-none">
+				<motion.div
+					className="absolute inset-0 z-10 bg-[radial-gradient(circle,var(--accent-soft),transparent_62%)] transition duration-700"
+					style={{ ...style, opacity: prefersReducedMotion ? 0 : glowOpacity }}
+				/>
+			</div>
+
+			{children}
+		</div>
+	);
 };

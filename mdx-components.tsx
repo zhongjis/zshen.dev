@@ -1,16 +1,19 @@
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren, ReactNode } from "react";
+
+type MdxComponent = (props: { children?: ReactNode }) => ReactNode;
+type MdxComponents = Record<string, MdxComponent>;
 
 // This file is required to use MDX in `app` directory.
-export function useMDXComponents(components: any): any {
+export function useMDXComponents(components: MdxComponents): MdxComponents {
 	return {
 		// Allows customizing built-in components, e.g. to add styling.
 		h1: ({ children }: PropsWithChildren) => (
-			<h1 className="mt-2 text-3xl font-bold tracking-tight text-zinc-100 md:text-center sm:text-4xl">
+			<h1 className="type-display-md mt-2 font-display text-fg md:text-center">
 				{children}
 			</h1>
 		),
 		h2: ({ children }: PropsWithChildren) => (
-			<h2 className="text-zinc-50">{children}</h2>
+			<h2 className="type-display-md mt-8 font-display text-fg">{children}</h2>
 		),
 		...components,
 	};

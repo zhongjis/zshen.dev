@@ -1,0 +1,79 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 16 16"
+  width="128"
+  height="128"
+  role="img"
+  aria-label="Pixel panda homepage mark"
+  style="width:128px;height:128px;display:block;image-rendering:pixelated;shape-rendering:crispEdges"
+>
+  <style>
+    rect { shape-rendering: crispEdges; }
+    .fg { fill: var(--fg, #fff); }
+    .ink { fill: var(--shadow-ink, #111); }
+    .accent { fill: var(--accent, #55ff3d); }
+    .seal { fill: var(--seal, transparent); }
+  </style>
+
+  <!-- Transparent background: intentionally no background rect. -->
+
+  <!-- Ears -->
+  <rect class="ink" x="2" y="1" width="3" height="1" />
+  <rect class="ink" x="1" y="2" width="4" height="2" />
+  <rect class="ink" x="2" y="4" width="3" height="1" />
+  <rect class="ink" x="11" y="1" width="3" height="1" />
+  <rect class="ink" x="11" y="2" width="4" height="2" />
+  <rect class="ink" x="11" y="4" width="3" height="1" />
+
+  <!-- Face outline -->
+  <rect class="ink" x="5" y="2" width="6" height="1" />
+  <rect class="ink" x="4" y="3" width="8" height="1" />
+  <rect class="ink" x="3" y="4" width="10" height="1" />
+  <rect class="ink" x="2" y="5" width="12" height="2" />
+  <rect class="ink" x="1" y="7" width="14" height="3" />
+  <rect class="ink" x="2" y="10" width="12" height="1" />
+  <rect class="ink" x="3" y="11" width="10" height="1" />
+  <rect class="ink" x="4" y="12" width="8" height="1" />
+
+  <!-- Face fill -->
+  <rect class="fg" x="5" y="3" width="6" height="1" />
+  <rect class="fg" x="4" y="4" width="8" height="1" />
+  <rect class="fg" x="3" y="5" width="10" height="2" />
+  <rect class="fg" x="2" y="7" width="12" height="3" />
+  <rect class="fg" x="3" y="10" width="10" height="1" />
+  <rect class="fg" x="4" y="11" width="8" height="1" />
+
+  <!-- Headphones: cyber green band and cups -->
+  <rect class="accent" x="5" y="2" width="6" height="1" />
+  <rect class="accent" x="4" y="3" width="1" height="1" />
+  <rect class="accent" x="11" y="3" width="1" height="1" />
+  <rect class="accent" x="3" y="4" width="1" height="1" />
+  <rect class="accent" x="12" y="4" width="1" height="1" />
+  <rect class="ink" x="1" y="6" width="2" height="4" />
+  <rect class="accent" x="2" y="7" width="1" height="2" />
+  <rect class="ink" x="13" y="6" width="2" height="4" />
+  <rect class="accent" x="13" y="7" width="1" height="2" />
+
+  <!-- Panda eye patches behind sunglasses -->
+  <rect class="ink" x="4" y="6" width="3" height="4" />
+  <rect class="ink" x="9" y="6" width="3" height="4" />
+
+  <!-- Sunglasses frame and green lenses -->
+  <rect class="accent" x="3" y="7" width="1" height="1" />
+  <rect class="accent" x="7" y="7" width="2" height="1" />
+  <rect class="accent" x="12" y="7" width="1" height="1" />
+  <rect class="accent" x="4" y="7" width="3" height="2" />
+  <rect class="accent" x="9" y="7" width="3" height="2" />
+  <rect class="fg" x="5" y="7" width="1" height="1" />
+  <rect class="fg" x="10" y="7" width="1" height="1" />
+
+  <!-- Calm face details -->
+  <rect class="ink" x="7" y="9" width="2" height="1" />
+  <rect class="ink" x="7" y="10" width="1" height="1" />
+  <rect class="ink" x="8" y="10" width="1" height="1" />
+  <rect class="ink" x="6" y="11" width="4" height="1" />
+
+  <!-- Soft cheeks -->
+  <rect class="seal" x="3" y="10" width="1" height="1" />
+  <rect class="seal" x="12" y="10" width="1" height="1" />
+</svg>
