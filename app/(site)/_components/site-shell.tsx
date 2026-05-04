@@ -4,8 +4,8 @@ import Link from "next/link";
 const navigation = [
 	{ name: "About me", href: "#index" },
 	{ name: "Consulting", href: "#consulting" },
-	{ name: "Sparks", href: "#sparks" },
-	{ name: "Misc", href: "#misc" },
+	{ name: "Thoughts", href: "#sparks" },
+	{ name: "Elsewhere", href: "#misc" },
 ];
 
 const footerLinks = [
@@ -75,10 +75,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
 			<footer className="portfolio-footer">
 				<span>
-					© 2026 Zhongjie Shen · Design inspired by{" "}
+					© 2026 Zhongjie Shen · Layout lineage:{" "}
 					<Link
 						href="https://mitchellh.com/"
-						className="text-link"
+						className="footer-credit-link"
 						target="_blank"
 						rel="noopener noreferrer"
 					>
