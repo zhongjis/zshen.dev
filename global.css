@@ -348,6 +348,12 @@
 		animation: motion-fade-up 360ms var(--ease-out-quart) both;
 	}
 
+	.route-panel {
+		position: relative;
+		max-width: 720px;
+		animation: motion-fade-up 360ms var(--ease-out-quart) both;
+	}
+
 	.portfolio-shell:not(:has(.portfolio-panel:target)) #index,
 	.portfolio-shell:has(#index:target) #index {
 		display: block;
@@ -361,21 +367,11 @@
 		display: block;
 	}
 
-	.portfolio-shell:has(#consulting:target) .side-link[href="#consulting"],
-	.portfolio-shell:has(#sparks:target) .side-link[href="#sparks"],
-	.portfolio-shell:has(#misc:target) .side-link[href="#misc"],
-	.portfolio-shell:not(:has(.portfolio-panel:target)) .side-link[href="#index"],
-	.portfolio-shell:has(#index:target) .side-link[href="#index"] {
+	.side-link.is-active {
 		color: var(--accent);
 	}
 
-	.portfolio-shell:has(#consulting:target)
-		.side-link[href="#consulting"]::before,
-	.portfolio-shell:has(#sparks:target) .side-link[href="#sparks"]::before,
-	.portfolio-shell:has(#misc:target) .side-link[href="#misc"]::before,
-	.portfolio-shell:not(:has(.portfolio-panel:target))
-		.side-link[href="#index"]::before,
-	.portfolio-shell:has(#index:target) .side-link[href="#index"]::before {
+	.side-link.is-active::before {
 		opacity: 1;
 		transform: translateY(-50%) scale(1);
 	}

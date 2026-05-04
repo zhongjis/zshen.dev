@@ -1,11 +1,13 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
+import { HashRouteNormalizer } from "./hash-route-normalizer";
+import { NavLink } from "./nav-link";
 
 const navigation = [
-	{ name: "About me", href: "#index" },
-	{ name: "Consulting", href: "#consulting" },
-	{ name: "Thoughts", href: "#sparks" },
-	{ name: "Elsewhere", href: "#misc" },
+	{ name: "About me", href: "/" },
+	{ name: "Consulting", href: "/consulting" },
+	{ name: "Thoughts", href: "/thoughts" },
+	{ name: "Elsewhere", href: "/elsewhere" },
 ];
 
 const footerLinks = [
@@ -30,9 +32,9 @@ export function PrimaryNav({ className }: { className?: string }) {
 	return (
 		<nav className={`portfolio-nav ${className ?? ""}`} aria-label="Primary">
 			{navigation.map((item) => (
-				<a key={item.href} href={item.href} className="side-link">
+				<NavLink key={item.href} href={item.href}>
 					{item.name}
-				</a>
+				</NavLink>
 			))}
 		</nav>
 	);
@@ -45,8 +47,9 @@ export function SiteHeading() {
 export function SiteShell({ children }: { children: React.ReactNode }) {
 	return (
 		<div className="portfolio-shell relative isolate overflow-hidden">
+			<HashRouteNormalizer />
 			<aside
-				className="portfolio-rail motion-enter"
+				className="portfolio-rail"
 				aria-label="Site identity and navigation"
 			>
 				<Link href="/" className="mark-row" aria-label="Home">
@@ -64,7 +67,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 			</aside>
 
 			<div className="portfolio-content relative min-w-0">
-				<header className="panel-head site-shell-head motion-enter motion-delay-1">
+				<header className="panel-head site-shell-head">
 					<div>
 						<SiteHeading />
 					</div>
@@ -75,7 +78,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
 			<footer className="portfolio-footer">
 				<span>
-					© 2026 Zhongjie Shen · Layout lineage:{" "}
+					© 2026 Zhongjie Shen · Inspired by:{" "}
 					<Link
 						href="https://mitchellh.com/"
 						className="footer-credit-link"
