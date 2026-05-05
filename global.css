@@ -632,7 +632,6 @@
 	}
 
 	.contact-trigger:focus {
-		color: var(--accent);
 		outline: none;
 	}
 

@@ -28,25 +28,21 @@ export function ContactTrigger({
 			link.animate(
 				[
 					{
-						color: "var(--stone)",
 						opacity: 0.58,
 						transform: "translateY(0) scale(1)",
 						offset: 0,
 					},
 					{
-						color: "var(--accent)",
 						opacity: 1,
 						transform: "translateY(-2px) scale(1.08)",
 						offset: 0.32,
 					},
 					{
-						color: "var(--accent)",
 						opacity: 1,
 						transform: "translateY(-2px) scale(1.08)",
 						offset: 0.72,
 					},
 					{
-						color: "var(--stone)",
 						opacity: 1,
 						transform: "translateY(0) scale(1)",
 						offset: 1,
