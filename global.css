@@ -25,9 +25,9 @@
 		Monaco, monospace;
 	--text-caption: 0.6875rem;
 	--text-label: 0.75rem;
-	--text-body: 0.9375rem;
-	--text-lead: clamp(1.25rem, 2.6vw, 1.75rem);
-	--text-display-md: clamp(1.5rem, 3vw, 2.125rem);
+	--text-body: 1rem;
+	--text-lead: clamp(1.5rem, 2.6vw, 2rem);
+	--text-display-md: clamp(1.75rem, 3.2vw, 2.5rem);
 	--text-display-lg: clamp(2.35rem, 5vw, 4.25rem);
 	--text-display-xl: clamp(2.625rem, 8vw, 5.25rem);
 	--track-caption: 0.03em;
@@ -51,7 +51,7 @@
 		color: var(--fg);
 		font-family: var(--font-body);
 		font-size: var(--text-body);
-		line-height: 1.48;
+		line-height: 1.58;
 		font-kerning: normal;
 		text-rendering: optimizeLegibility;
 		-webkit-font-smoothing: antialiased;
@@ -339,6 +339,7 @@
 	.portfolio-content {
 		align-self: start;
 		padding-top: 2px;
+		min-height: clamp(420px, 60svh, 560px);
 	}
 
 	.portfolio-panel {
@@ -381,7 +382,7 @@
 		align-items: baseline;
 		justify-content: space-between;
 		gap: 24px;
-		margin-bottom: 34px;
+		margin-bottom: 40px;
 	}
 
 	.site-shell-head h1,
@@ -418,8 +419,8 @@
 
 	.portfolio-panel h3 {
 		margin-bottom: 8px;
-		font-size: 1.0625rem;
-		line-height: 1.25;
+		font-size: 1.125rem;
+		line-height: 1.22;
 		letter-spacing: 0.01em;
 	}
 
@@ -442,7 +443,7 @@
 
 	.intro {
 		display: grid;
-		gap: 22px;
+		gap: 20px;
 		align-content: start;
 	}
 
@@ -459,12 +460,12 @@
 
 	.intro-copy {
 		display: grid;
-		gap: 14px;
+		gap: 16px;
 		max-width: 54ch;
 		color: var(--muted);
 		font-family: var(--font-display);
-		font-size: 0.9375rem;
-		line-height: 1.55;
+		font-size: var(--text-body);
+		line-height: 1.6;
 	}
 
 	.intro-copy p {
@@ -601,7 +602,7 @@
 		display: grid;
 		grid-template-columns: minmax(0, 1fr) auto;
 		gap: 24px;
-		padding: 18px 0 17px;
+		padding: 20px 0 19px;
 		border-bottom: 1px solid var(--border-soft);
 		color: inherit;
 		text-decoration: none;
@@ -613,8 +614,8 @@
 		margin: 0;
 		color: var(--muted);
 		font-family: var(--font-display);
-		font-size: 0.875rem;
-		line-height: 1.45;
+		font-size: 0.9375rem;
+		line-height: 1.55;
 	}
 
 	.portfolio-row:hover {
@@ -694,12 +695,13 @@
 
 	.portfolio-footer {
 		grid-column: 2;
+		grid-row: 2;
 		align-self: start;
 		display: flex;
 		align-items: center;
 		gap: 13px;
 		scroll-margin-top: 52px;
-		padding-top: clamp(88px, 10vh, 128px);
+		padding-top: clamp(64px, 8vh, 80px);
 		color: var(--stone);
 		font-family: var(--font-display);
 		font-size: 0.75rem;
@@ -997,6 +999,7 @@
 
 		.portfolio-content {
 			padding-top: 0;
+			min-height: clamp(560px, 76svh, 1000px);
 		}
 
 		.panel-head {
@@ -1034,6 +1037,7 @@
 
 		.portfolio-footer {
 			grid-column: 1;
+			grid-row: 3;
 			flex-wrap: wrap;
 			justify-content: start;
 			padding-top: 52px;
