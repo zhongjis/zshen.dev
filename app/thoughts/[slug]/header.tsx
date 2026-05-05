@@ -50,9 +50,9 @@ export const Header: FC<Props> = ({ project, views }) => {
 				}`}
 			>
 				<div className="container mx-auto flex items-center justify-between px-6 py-5 motion-fade">
-					<Link href="/#sparks" className="type-label ui-btn ui-btn-quiet">
+					<Link href="/thoughts" className="type-label ui-btn ui-btn-quiet">
 						<ArrowLeft className="h-4 w-4" />
-						Sparks
+						Thoughts
 					</Link>
 
 					<div className="flex items-center gap-5">
@@ -82,7 +82,7 @@ export const Header: FC<Props> = ({ project, views }) => {
 				<div className="mx-auto flex max-w-5xl flex-col items-center text-center">
 					<div className="motion-enter mx-auto max-w-3xl">
 						<p className="type-kicker motion-fade motion-delay-1 mb-4 text-accent">
-							Project
+							Thought
 						</p>
 						<h1 className="type-display-lg motion-enter motion-delay-2 font-display text-fg">
 							{project.title}

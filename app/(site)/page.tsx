@@ -1,37 +1,51 @@
 import Link from "next/link";
 import ParticleOrbCSS from "../components/particle-orb";
+import { ContactTrigger } from "./_components/contact-trigger";
+import { projects } from ".velite";
 
 const consulting = [
 	{
 		title: "AI tooling",
-		href: "mailto:zhongjie.x.shen@gmail.com",
+		description:
+			"Shape agent workflows, eval loops, and internal tools that make AI work reliable.",
+		meta: "Contact",
+		action: "Highlight contact links",
 	},
 	{
 		title: "Software Contracting",
-		href: "mailto:zhongjie.x.shen@gmail.com",
+		description:
+			"Build focused product surfaces and backend systems for complex enterprise work.",
+		meta: "Contact",
+		action: "Highlight contact links",
 	},
 	{
 		title: "Home Lab",
-		href: "/projects/home-kubernetes-cluster",
+		description:
+			"Design rebuildable infrastructure on K3s and Nix, from machines to day-two operations.",
+		meta: "Contact",
+		action: "Highlight contact links",
 	},
 ];
 
-const sparks = [
-	{
-		title: "Kubernetes at home",
-		description: "Rebuildable machines. Quiet operations. No mystery state.",
-		href: "/projects/home-kubernetes-cluster",
-	},
+const thoughts = projects
+	.filter((project) => project.published)
+	.sort(
+		(a, b) =>
+			Date.parse(b.date ?? "1970-01-01") - Date.parse(a.date ?? "1970-01-01"),
+	)
+	.map((project) => ({
+		title: project.title,
+		description: project.description,
+		href: project.path,
+	}));
+
+const elsewhere = [
 	{
 		title: "nix-config",
 		description:
-			"A personal operating system for moving between machines cleanly.",
-		href: "/projects/nix-config",
-	},
-	{
-		title: "AI tooling",
-		description: "My awesome pi-harness",
-		href: "#consulting",
+			"Personal NixOS and Home Manager configuration for moving cleanly between machines.",
+		href: "https://github.com/zhongjis/nix-config",
+		meta: "GitHub",
 	},
 ];
 
@@ -74,7 +88,7 @@ export default function Home() {
 							<p>
 								By night, I build AI tools and maintain a home lab on{" "}
 								<Link
-									href="/projects/home-kubernetes-cluster"
+									href="/thoughts/home-kubernetes-cluster"
 									className="text-link"
 								>
 									K3s and Nix
@@ -89,9 +103,9 @@ export default function Home() {
 						</div>
 					</div>
 
-					<div className="weather-field" aria-label="Particle Orb CSS">
+					<figure className="weather-field" aria-label="Particle Orb CSS">
 						<ParticleOrbCSS />
-					</div>
+					</figure>
 				</div>
 			</section>
 
@@ -103,20 +117,19 @@ export default function Home() {
 				<header className="panel-head">
 					<div>
 						<p className="type-kicker">Consulting</p>
-						<h2 id="consulting-title">Consulting</h2>
+						<h2 id="consulting-title">Need a helping hand?</h2>
 					</div>
-					<p className="small-meta">01 / 03</p>
 				</header>
 				<div className="portfolio-list consulting-list">
 					{consulting.map((item, index) => (
-						<Link
+						<ContactTrigger
 							key={item.title}
-							href={item.href}
-							className="portfolio-row consulting-row group"
-						>
-							<span className="num">{twoDigit(index)}</span>
-							<h3>{item.title}</h3>
-						</Link>
+							index={twoDigit(index)}
+							title={item.title}
+							description={item.description}
+							meta={item.meta}
+							action={item.action}
+						/>
 					))}
 				</div>
 			</section>
@@ -128,13 +141,12 @@ export default function Home() {
 			>
 				<header className="panel-head">
 					<div>
-						<p className="type-kicker">Sparks</p>
-						<h2 id="sparks-title">Sparks</h2>
+						<p className="type-kicker">Writing</p>
+						<h2 id="sparks-title">Thoughts</h2>
 					</div>
-					<p className="small-meta">Blogs</p>
 				</header>
 				<div className="portfolio-list">
-					{sparks.map((item, index) => (
+					{thoughts.map((item, index) => (
 						<Link
 							key={item.href + item.title}
 							href={item.href}
@@ -157,22 +169,27 @@ export default function Home() {
 			>
 				<header className="panel-head">
 					<div>
-						<p className="type-kicker">Misc</p>
-						<h2 id="misc-title">Misc</h2>
+						<p className="type-kicker">Project highlights</p>
+						<h2 id="misc-title">Elsewhere</h2>
 					</div>
 				</header>
-				<ul className="misc-links">
-					<li>
+				<div className="portfolio-list">
+					{elsewhere.map((item) => (
 						<Link
-							href="https://github.com/zhongjis/nix-config"
-							className="text-link"
+							key={item.href}
+							href={item.href}
+							className="portfolio-row project-row group"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							https://github.com/zhongjis/nix-config
+							<div className="row-copy">
+								<h3>{item.title}</h3>
+								<p>{item.description}</p>
+							</div>
+							<span className="small-meta row-meta">{item.meta}</span>
 						</Link>
-					</li>
-				</ul>
+					))}
+				</div>
 			</section>
 		</>
 	);

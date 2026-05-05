@@ -1,91 +1,64 @@
-# PROJECT KNOWLEDGE BASE
+# AGENTS.md
+This file is agent execution contract for `zshen.dev`. Keep it short; stale facts cause bad changes.
 
-**Generated:** 2026-03-01  
-**Commit:** cca5ca1  
-**Branch:** main
+## Environment workflow
 
-## OVERVIEW
+IMPORTANT: direnv loads this repo's Nix flake automatically.
 
-Personal portfolio site (zshen.dev) built with Next.js 13.5 App Router + Contentlayer for MDX content. Deployed on Vercel.
+- Run repo commands directly: `pnpm build`, `pnpm fmt`, `pnpm exec tsc --noEmit --pretty false`.
+- Do NOT prefix normal commands with `nix develop`.
+- Use `nix develop` only as fallback when direnv is inactive/unavailable or you are outside the repo shell.
+- Use pnpm only. Do not use npm/yarn.
 
-## STRUCTURE
-
-```
-zshen.dev/
-├── app/                    # App Router pages + components
-│   ├── components/         # Shared UI: analytics, card, mdx, nav, particles
-│   ├── contact/            # Contact page (client component, social links)
-│   └── projects/           # Project listing + dynamic [slug] pages
-│       └── [slug]/         # Individual project pages (MDX rendered)
-├── content/                # MDX source files (processed by Contentlayer)
-│   ├── projects/           # Active project entries (3 MDX files)
-│   └── chronark-projects/  # Forked/template content (17 MDX files)
-├── pages/api/              # Pages Router — API routes ONLY
-│   └── incr.ts             # Redis page view counter endpoint
-├── public/                 # Static assets + fonts (CalSans)
-├── types/                  # Type declarations (mdx.d.ts)
-└── util/                   # Utilities (useMousePosition hook)
-```
-
-## WHERE TO LOOK
-
-| Task                      | Location                          | Notes                                         |
-| ------------------------- | --------------------------------- | --------------------------------------------- |
-| Add a new project         | `content/projects/*.mdx`          | Requires: published, title, description, date |
-| Edit page layout/metadata | `app/layout.tsx`                  | Root layout, fonts, OG metadata               |
-| Modify project listing    | `app/projects/page.tsx`           | Server component, ISR (revalidate=60)         |
-| Change MDX rendering      | `contentlayer.config.js`          | Document types, rehype/remark plugins          |
-| Add MDX components        | `mdx-components.tsx`              | Custom h1/h2 styling                          |
-| Modify page view tracking | `pages/api/incr.ts`               | Upstash Redis increment                       |
-| Change animations/styling | `tailwind.config.js`, `global.css`| Custom fade-in/title/fade-left/right anims    |
-| Add a new page route      | `app/{route}/page.tsx`            | App Router convention                         |
-| API routes                | `pages/api/`                      | Pages Router — only place using it             |
-
-## ARCHITECTURE NOTES
-
-- **Mixed routing**: App Router for all pages, Pages Router solely for `pages/api/incr.ts` (Redis view counter)
-- **Content pipeline**: Contentlayer reads `content/**/*.mdx` → generates typed data at build → imported via `contentlayer/generated`
-- **Two content types**: `Project` (from `./projects/**/*.mdx`) and `Page` (from `pages/**/*.mdx`) defined in `contentlayer.config.js`
-- **ISR**: Projects page uses `revalidate = 60` for incremental static regeneration
-- **View counts**: Stored in Upstash Redis, fetched server-side via `mget`, incremented client-side via `/api/incr`
-
-## CONVENTIONS
-
-- **Biome** (rome.json) for linting/formatting — run `pnpm fmt`
-- **TypeScript strict mode** — no `as any`, no `@ts-ignore`
-- **Server components by default** — only `app/components/card.tsx`, `app/components/nav.tsx`, `app/contact/page.tsx` use `"use client"`
-- **pnpm** as package manager
-- **Path aliases**: `@/*` → project root, `contentlayer/generated` → `.contentlayer/generated`
-- **Fonts**: Inter (Google Fonts) for body, CalSans (local, `public/fonts/`) for display headings
-
-## ANTI-PATTERNS
-
-- Do NOT add `"use client"` unless the component uses hooks, event handlers, or browser APIs
-- Do NOT use Pages Router for new pages — App Router only (`pages/` is exclusively for API routes)
-- Do NOT install eslint/prettier — project uses Biome (rome.json)
-- Do NOT use npm/yarn — use **pnpm**
-
-## ENVIRONMENT
-
-| Variable                  | Purpose                    |
-| ------------------------- | -------------------------- |
-| `UPSTASH_REDIS_REST_URL`  | Redis connection URL       |
-| `UPSTASH_REDIS_REST_TOKEN`| Redis auth token           |
-
-## COMMANDS
+## Commands
 
 ```bash
-pnpm dev          # Start dev server
-pnpm build        # Production build
-pnpm start        # Start production server
-pnpm fmt          # Format with Biome
-nix develop       # Enter Nix dev shell (node, pnpm, yarn)
+pnpm dev                                  # local dev server
+pnpm build                                # production build; runs Velite first via next.config.mjs
+pnpm start                                # production server
+pnpm fmt                                  # Biome check/write formatting
+pnpm exec tsc --noEmit --pretty false     # typecheck
 ```
 
-## NOTES
+No test script exists currently. For code changes, run focused typecheck plus `pnpm build` when build-affecting.
 
-- Project was forked/inspired by chronark.com — `content/chronark-projects/` contains original template content
-- README TODOs: add Vercel analytics, developer section, art section
-- `tailwindcss-debug-screens` overlay appears in dev mode (conditional in layout.tsx)
-- Particles background on homepage uses Canvas API (`app/components/particles.tsx`)
-- Custom text effect `.text-edge-outline` in `global.css` uses `-webkit-text-stroke`
+## Current stack facts
+
+- Next.js 16 App Router, TypeScript, Tailwind CSS, deployed on Vercel.
+- Velite compiles MDX from `content/projects/**/*.mdx` into `.velite`. Import generated project data from `.velite`.
+- `velite.config.ts` defines content schema. `next.config.mjs` runs Velite before Next build.
+- Do NOT reintroduce Contentlayer or `contentlayer/generated`; migration is complete.
+- Pages Router is used only for `pages/api/incr.ts` Redis view-counter API.
+
+## Where to edit
+
+| Task | Location | Notes |
+| --- | --- | --- |
+| Add active project | `content/projects/*.mdx` | Follow `velite.config.ts` schema: `published`, `title`, `description`, `date` |
+| Edit layout/metadata | `app/layout.tsx` | Root layout, fonts, metadata |
+| Modify project listing | `app/projects/page.tsx` | Server component; keep filtering/sorting pattern |
+| Modify project detail | `app/projects/[slug]/page.tsx` | Imports project data from `.velite` |
+| Change MDX schema/rendering | `velite.config.ts`, `mdx-components.tsx` | Keep Velite output compatible with existing imports |
+| Modify page views | `pages/api/incr.ts` | Uses Upstash Redis REST env vars |
+| Change styling/animations | `tailwind.config.js`, `global.css` | Match existing Tailwind/custom CSS patterns |
+| Add page route | `app/{route}/page.tsx` | App Router only |
+
+## Conventions
+
+- Server Components by default. Add `"use client"` only for hooks, event handlers, or browser APIs.
+- New pages go under `app/`; do not add Pages Router pages.
+- API routes stay in `pages/api/` unless doing a deliberate migration.
+- TypeScript strict mode: no `as any`, no `@ts-ignore`, no `@ts-nocheck` unless user explicitly approves.
+- Biome is formatting/linting tool. Do not add ESLint or Prettier.
+- Path aliases: `@/*` -> repo root; `.velite` and `.velite/*` -> generated Velite output.
+
+## Environment variables
+
+| Variable | Purpose |
+| --- | --- |
+| `UPSTASH_REDIS_REST_URL` | Redis connection URL |
+| `UPSTASH_REDIS_REST_TOKEN` | Redis auth token |
+
+## Known build warnings
+
+`pnpm build` currently succeeds but warns that `highstorm.mdx` and `planetfall.mdx` have empty bodies. Do not treat these warnings as failures unless working on content quality.
