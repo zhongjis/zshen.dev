@@ -30,6 +30,15 @@ No test script exists currently. For code changes, run focused typecheck plus `p
 - Do NOT reintroduce Contentlayer or `contentlayer/generated`; migration is complete.
 - Pages Router is used only for `pages/api/incr.ts` Redis view-counter API.
 
+## Design Context
+
+Design direction lives in two root docs; read them before changing visuals.
+
+- `PRODUCT.md` — strategy: register `brand`, audience, brand personality, anti-references, design principles.
+- `DESIGN.md` — visual system: "Personal Workshop Notebook", dark purple OKLCH field, Charter serif, rare green signal, mono labels, rows-not-cards. Source tokens live in `global.css` `:root`.
+- Keep Mitchell Hashimoto influence as structural lineage only (sticky rail, hash-target panels). No gradient text, decorative glass, pure black/white, or colored side-stripe borders.
+- Run `/impeccable` commands for design work; live mode is configured in `.impeccable/live/config.json`.
+
 ## Where to edit
 
 | Task | Location | Notes |
