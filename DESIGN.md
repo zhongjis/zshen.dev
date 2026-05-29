@@ -13,6 +13,9 @@ colors:
   accent-quiet: "oklch(57% 0.09 151)"
   seal: "oklch(70% 0.105 42)"
   shadow-ink: "oklch(9% 0.018 284)"
+  accent-soft: "color-mix(in oklch, accent 12%, transparent)"
+  seal-soft: "color-mix(in oklch, seal 10%, transparent)"
+  paper-line: "color-mix(in oklch, fg 5%, transparent)"
 typography:
   display:
     fontFamily: "Charter, Georgia, Palatino, Times New Roman, serif"
@@ -28,9 +31,9 @@ typography:
     letterSpacing: "-0.012em"
   body:
     fontFamily: "Charter, Georgia, Palatino, Times New Roman, serif"
-    fontSize: "0.9375rem"
+    fontSize: "1rem"
     fontWeight: 400
-    lineHeight: 1.48
+    lineHeight: 1.58
   label:
     fontFamily: "ui-monospace, JetBrains Mono, SF Mono, Fira Code, Consolas, Monaco, monospace"
     fontSize: "0.75rem"
@@ -51,12 +54,21 @@ components:
     padding: "0 0 0 14px"
   row-link:
     textColor: "{colors.fg}"
-    padding: "18px 0 17px"
+    padding: "20px 0 19px"
   button-default:
     backgroundColor: "{colors.surface}"
     textColor: "{colors.fg}"
     rounded: "{rounded.none}"
     padding: "0.5rem 1.25rem"
+motion:
+  duration:
+    fast: "160ms"
+    mid: "280ms"
+    slow: "680ms"
+  easing:
+    out-quart: "cubic-bezier(0.25, 1, 0.5, 1)"
+    out-quint: "cubic-bezier(0.22, 1, 0.36, 1)"
+    out-expo: "cubic-bezier(0.16, 1, 0.3, 1)"
 ---
 
 # Design System: zshen.dev
@@ -120,7 +132,7 @@ Committed dark workshop palette. Purple-black carries most of the surface; green
 - **Display** (500, `clamp(2.625rem, 8vw, 5.25rem)`, `0.98`): the site name and largest identity moments.
 - **Headline** (500, `clamp(1.5rem, 3vw, 2.125rem)`, `1.12`): panel headings such as Consulting, Sparks, and Misc.
 - **Title** (500, `1.0625rem`, `1.25`): row titles and compact project names.
-- **Body** (400, `0.9375rem`, `1.48` to `1.55`): explanatory copy, usually capped around 54ch to 65ch.
+- **Body** (400, `1rem`, `1.58`): explanatory copy, usually capped around 54ch to 65ch (`.measure`). `.type-body-sm` drops to `0.9375rem` for dense metadata rows.
 - **Label** (`0.6875rem` to `0.75rem`, restrained tracking): nav, counters, metadata, and type kickers.
 
 ### Named Rules
@@ -142,6 +154,12 @@ The homepage is flat by default. Depth comes from tonal layering, rules, spacing
 
 **The Flat Rows Rule.** Portfolio rows stay flat. Hover moves them horizontally by `0.25rem`; it does not lift them into cards.
 
+## 4b. Motion
+
+Motion is CSS-only, transform/opacity based, and tokenized. Durations: `--dur-fast` 160ms, `--dur-mid` 280ms (default for hover/link transitions), `--dur-slow` 680ms (entrance reveals). Easing: `--ease-out-quart` `cubic-bezier(0.25, 1, 0.5, 1)`, `--ease-out-quint` `cubic-bezier(0.22, 1, 0.36, 1)`, `--ease-out-expo` `cubic-bezier(0.16, 1, 0.3, 1)`.
+
+Entrance helpers: `.motion-enter` (fade-up via `ease-out-expo`) and `.motion-fade` (opacity via `ease-out-quint`), staggered by `.motion-delay-1` through `.motion-delay-5` (90ms steps). All entrance motion and the particle orb collapse to a static end-state under `prefers-reduced-motion`.
+
 ## 5. Components
 
 ### Navigation
@@ -160,7 +178,7 @@ Panels are hash-target sections. `#index` is visible by default; other panels re
 
 ### Rows
 
-Portfolio rows use top and bottom rules instead of cards. Padding is `18px 0 17px`; hover shifts the row `0.25rem` to the right and turns text green. Consulting rows place a mono number first; project rows place metadata at the far edge.
+Portfolio rows use top and bottom rules instead of cards. Padding is `20px 0 19px`; hover shifts the row `0.25rem` to the right and turns text green. Consulting rows place a mono number first; project rows place metadata at the far edge. Project-page `.work-row` is a richer variant: a `2.5rem` leading column, hover tints the surface and expands inline padding, and a seal-colored `.work-arrow` slides `0.25rem` right.
 
 ### Links
 
@@ -173,6 +191,14 @@ Buttons are square-edged, bordered, and subdued: `border-radius: 0`, `1px solid 
 ### Particle Field
 
 The CSS particle orb is allowed because it is authored in the site's own language, not a client-side spectacle. It should stay CSS-only, calm at rest, and respectful of `prefers-reduced-motion`.
+
+### Feature surfaces
+
+Reserved for project pages, not the flat homepage. `.editorial-card` and `.page-finale` are square-edged bordered planes (`border-radius: 0`) over a `surface`/`bg` mix, carrying the Soft Ink Shadow; `.editorial-card` adds a faint diagonal `paper-line` ruling and `.page-finale` a large off-edge seal-tinted ring. `.principle-card` is a top-ruled block whose closing line jumps to display serif at `clamp(1.2rem, 2.4vw, 1.7rem)`. `.editorial-rule` is a hairline gradient divider that warms to accent at its midpoint.
+
+### Chips
+
+`.quiet-chip` is a bordered inline tag on a translucent `surface` mix, muted text at `0.82rem`, square-edged. Used for compact metadata, not as a card substitute.
 
 ## 6. Do's and Don'ts
 
