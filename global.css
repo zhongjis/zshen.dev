@@ -1077,15 +1077,16 @@
 		}
 
 		.particle-orb {
-			animation: none !important;
-			transform: rotateY(18deg) rotateX(14deg);
+			animation: particle-orb-rotate 14s linear infinite !important;
+			animation-duration: 14s !important;
+			animation-iteration-count: infinite !important;
 		}
 
 		.particle-orb-dot {
-			opacity: 0.82;
-			animation: none !important;
-			transform: rotateZ(var(--neg-z)) rotateY(var(--y))
-				translateX(var(--orb-size)) rotateZ(var(--z));
+			animation: particle-orb-flight 14s linear infinite !important;
+			animation-delay: var(--delay) !important;
+			animation-duration: 14s !important;
+			animation-iteration-count: infinite !important;
 		}
 	}
 }
