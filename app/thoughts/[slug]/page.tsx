@@ -29,7 +29,10 @@ export async function generateStaticParams(): Promise<Params[]> {
 export default async function PostPage(props: Props) {
 	const params = await props.params;
 	const slug = params?.slug;
-	const project = projects.find((project) => project.slug === slug);
+	const project = projects.find(
+		(project) =>
+			project.slug === slug && project.published && project.body.trim().length > 0,
+	);
 
 	if (!project) {
 		notFound();
