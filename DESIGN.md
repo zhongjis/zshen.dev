@@ -13,9 +13,9 @@ colors:
   accent-quiet: "oklch(57% 0.09 151)"
   seal: "oklch(70% 0.105 42)"
   shadow-ink: "oklch(9% 0.018 284)"
-  accent-soft: "color-mix(in oklch, accent 12%, transparent)"
-  seal-soft: "color-mix(in oklch, seal 10%, transparent)"
-  paper-line: "color-mix(in oklch, fg 5%, transparent)"
+  accent-soft: "color-mix(in oklch, var(--accent) 12%, transparent)"
+  seal-soft: "color-mix(in oklch, var(--seal) 10%, transparent)"
+  paper-line: "color-mix(in oklch, var(--fg) 5%, transparent)"
 typography:
   display:
     fontFamily: "Charter, Georgia, Palatino, Times New Roman, serif"
@@ -60,15 +60,6 @@ components:
     textColor: "{colors.fg}"
     rounded: "{rounded.none}"
     padding: "0.5rem 1.25rem"
-motion:
-  duration:
-    fast: "160ms"
-    mid: "280ms"
-    slow: "680ms"
-  easing:
-    out-quart: "cubic-bezier(0.25, 1, 0.5, 1)"
-    out-quint: "cubic-bezier(0.22, 1, 0.36, 1)"
-    out-expo: "cubic-bezier(0.16, 1, 0.3, 1)"
 ---
 
 # Design System: zshen.dev
@@ -154,11 +145,11 @@ The homepage is flat by default. Depth comes from tonal layering, rules, spacing
 
 **The Flat Rows Rule.** Portfolio rows stay flat. Hover moves them horizontally by `0.25rem`; it does not lift them into cards.
 
-## 4b. Motion
+### Motion Vocabulary
 
 Motion is CSS-only, transform/opacity based, and tokenized. Durations: `--dur-fast` 160ms, `--dur-mid` 280ms (default for hover/link transitions), `--dur-slow` 680ms (entrance reveals). Easing: `--ease-out-quart` `cubic-bezier(0.25, 1, 0.5, 1)`, `--ease-out-quint` `cubic-bezier(0.22, 1, 0.36, 1)`, `--ease-out-expo` `cubic-bezier(0.16, 1, 0.3, 1)`.
 
-Entrance helpers: `.motion-enter` (fade-up via `ease-out-expo`) and `.motion-fade` (opacity via `ease-out-quint`), staggered by `.motion-delay-1` through `.motion-delay-5` (90ms steps). All entrance motion and the particle orb collapse to a static end-state under `prefers-reduced-motion`.
+Entrance helpers: `.motion-enter` (fade-up via `ease-out-expo`) and `.motion-fade` (opacity via `ease-out-quint`), staggered by `.motion-delay-1` through `.motion-delay-5` (90ms steps). Reduced-motion mode must keep content visible without gated reveals.
 
 ## 5. Components
 
