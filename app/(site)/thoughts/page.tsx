@@ -1,6 +1,27 @@
 import Link from "next/link";
 import { projects } from ".velite";
 
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+	month: "short",
+	day: "numeric",
+	year: "numeric",
+	timeZone: "UTC",
+});
+
+function formatThoughtDate(date: string | undefined) {
+	if (!date) {
+		return "Undated";
+	}
+
+	const timestamp = Date.parse(date);
+
+	if (Number.isNaN(timestamp)) {
+		return "Undated";
+	}
+
+	return dateFormatter.format(new Date(timestamp));
+}
+
 const thoughts = projects
 	.filter((project) => project.published)
 	.sort(
@@ -11,11 +32,8 @@ const thoughts = projects
 		title: project.title,
 		description: project.description,
 		href: project.path,
+		date: project.date,
 	}));
-
-function twoDigit(index: number) {
-	return String(index + 1).padStart(2, "0");
-}
 
 export default function ThoughtsPage() {
 	return (
@@ -30,7 +48,7 @@ export default function ThoughtsPage() {
 				</div>
 			</header>
 			<div className="portfolio-list">
-				{thoughts.map((item, index) => (
+				{thoughts.map((item) => (
 					<Link
 						key={item.href + item.title}
 						href={item.href}
@@ -40,7 +58,7 @@ export default function ThoughtsPage() {
 							<h3>{item.title}</h3>
 							<p>{item.description}</p>
 						</div>
-						<span className="small-meta">{twoDigit(index)}</span>
+						<span className="small-meta">{formatThoughtDate(item.date)}</span>
 					</Link>
 				))}
 			</div>

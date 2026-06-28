@@ -15,6 +15,7 @@ const projects = defineCollection({
 			published: s.boolean().default(false),
 			url: s.string().optional(),
 			repository: s.string().optional(),
+			tags: s.array(s.string()).default([]),
 			body: s.mdx(),
 			slug: s.path(),
 		})

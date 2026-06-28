@@ -9,7 +9,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "fmt": "pnpm biome check . --apply-unsafe && pnpm biome format . --write"
+    "fmt": "pnpm exec -- biome format --write 'app/(site)' global.css mdx-components.tsx next.config.mjs postcss.config.js tailwind.config.js velite.config.ts biome.json"
   },
   "dependencies": {
     "@upstash/redis": "^1.23.3",
