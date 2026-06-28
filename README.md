@@ -1,39 +1,41 @@
-<div align="center">
-    <a href="https://zshen.dev"><h1 align="center">zshen.dev</h1></a>
+# zshen.dev
 
-My personal website, built with [Next.js](https://nextjs.org/), [Tailwind CSS](https://tailwindcss.com/), [Upstash](https://upstash.com), [Velite](https://velite.js.org/) and deployed to [Vercel](https://vercel.com/).
+Personal engineering portfolio for Zhongjie Shen, built with Next.js App Router, TypeScript, Tailwind CSS, Velite MDX, Upstash Redis, and Vercel.
 
-</div>
+## Local development
 
-<br/>
-
-this stack is built on Vercel
-
-## Running Locally
-
-Create a `.env` file similar to [`.env.example`](./.env.example).
-
-Then install dependencies and run the development server:
-
-```sh-session
+```sh
 pnpm install
 pnpm dev
 ```
 
-### Nix
+`pnpm dev` runs Velite through `next.config.mjs` before starting Next.js. The repo uses Nix direnv for the development shell; when direnv is active, run pnpm commands directly.
 
-This repo uses nix [direnv](https://github.com/nix-community/nix-direnv) to manage all dependencies.
+## Commands
 
-## Cloning / Forking
+```sh
+pnpm dev                                  # local dev server
+pnpm build                                # production build
+pnpm start                                # production server
+pnpm fmt                                  # format configured files with Biome
+pnpm exec tsc --noEmit --pretty false     # typecheck
+```
 
-## TODOs
+No test script exists currently.
 
-- [x] add zshen.dev domain redirection - zshen.art
-- [x] remove all chronark.com references
-- [x] add vercel analytics
-- [ ] add developer section
-- [ ] add art section
+## Environment
 
-## Special Thanks
+Copy `.env.example` to `.env` when you want Redis-backed view counts:
 
-- chronark.com
+```sh
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+```
+
+Without those variables, thought pages render with `0` views.
+
+## Content
+
+Velite compiles `content/projects/**/*.mdx` into `.velite`. Published entries appear at `/thoughts` and `/thoughts/[slug]`; `/projects/*` redirects to `/thoughts/*` for legacy links.
+
+Project frontmatter supports `title`, `description`, `date`, `published`, `url`, `repository`, and `tags`. `slug` and `path` are generated from the file path.

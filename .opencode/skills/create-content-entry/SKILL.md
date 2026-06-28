@@ -1,13 +1,13 @@
 ---
 name: create-content-entry
-description: Create new zshen.dev content entries with the repo's actual MDX patterns. Use this whenever the user asks to create a new project, add a project post, draft an MDX entry, document a build, write a project-style post, or add something to `content/projects/`, even if they describe it casually. Also use it when the user says "blog post" for this repo and you need to check whether that request should map to the existing projects archive. This skill handles frontmatter, tone, banner choices, and verification for new content entries.
+description: Create new zshen.dev content entries with the repo's actual MDX patterns. Use this whenever the user asks to create a new project, add a project post, draft an MDX entry, document a build, write a project-style post, or add something to `content/projects/`, even if they describe it casually. Also use it when the user says "blog post" for this repo and you need to check whether that request should map to the existing projects collection. This skill handles frontmatter, tone, banner choices, and verification for new content entries.
 ---
 
 # Create Content Entry
 
-Create new content for this repo in the same voice and structure as the existing archive.
+Create new content for this repo in the same voice and structure as the existing content collection.
 
-This repo currently has one real content collection: `content/projects/**/*.mdx`, compiled by `velite.config.ts` into the `/projects` archive. Treat that as the default target unless you verify that a separate blog collection exists.
+This repo currently has one real content collection: `content/projects/**/*.mdx`, compiled by `velite.config.ts` and published under `/thoughts`. Treat that as the default target unless you verify that a separate blog collection exists. Legacy `/projects/*` URLs redirect to `/thoughts/*` in `next.config.mjs`.
 
 ## Mandatory Preparation
 
@@ -23,7 +23,7 @@ Load `react-doctor` only if the work also changes React or Next.js UI code.
 
 - Content is defined by `velite.config.ts`.
 - The active collection is `projects/**/*.mdx` under `content/`.
-- Required frontmatter shape is: `title`, optional `description`, optional `date`, `published`, optional `url`, optional `repository`.
+- Frontmatter shape is: `title`, optional `description`, optional `date`, `published`, optional `url`, optional `repository`, optional `tags`.
 - `slug` and `path` are derived automatically from the file path.
 - Existing published examples live in `content/projects/`.
 
@@ -91,21 +91,21 @@ url: https://example.com
 Notes:
 - Default to `published: false` unless the user clearly wants the entry live now.
 - If the user does not explicitly ask to publish, keep it unpublished even when the request sounds complete or polished.
-- Use today's date when creating a new entry unless the user gives a different date.
+- Use the current session date when creating a new entry unless the user gives a different date.
 - Include `repository` only when the user provides one or when the correct repo can be confirmed from nearby repo context.
 - If the request is hypothetical or the repo name is missing, omit `repository` rather than guessing one.
 - `repository` must be `owner/repo`, not a full GitHub URL.
 - Include `url` only when there is a real external project URL.
-- A missing `description` is technically valid because Velite supplies a default, but prefer writing one so the archive card and header stay specific.
+- A missing `description` is technically valid because Velite supplies a default, but prefer writing one so the list row and header stay specific.
 - Never invent repos, URLs, dates, or claims.
 
 ### 4. Build the body in the repo's style
 
-Use the existing project entries as the model:
-- optional bold tag line near the top, like `**kubernetes,self-hosting,homelab**`
-- optional banner image on its own line after the tags
+Use the existing published entries as the model:
 - short, concrete paragraphs
-- direct links to the repository or live project when relevant
+- personal first person when describing systems Zhongjie runs
+- repository or live-project links only when verified via frontmatter
+- no body tag line or banner by default; use frontmatter `tags` for topics
 
 Prefer this minimal safe body structure when repo details are unknown:
 
@@ -117,25 +117,33 @@ Second paragraph with the architecture, stack, or purpose.
 Closing sentence.
 ```
 
-When tags, banner, or repo links are verified, extend it like this:
+When repository, URL, or topics are verified, put them in frontmatter:
 
 ```mdx
-**tag1,tag2,tag3**
-
-![](https://...)
+---
+title: Project Title
+description: One clear sentence about what the project is.
+date: "2026-03-20"
+published: false
+repository: owner/repo
+url: https://example.com
+tags:
+  - nix
+  - homelab
+---
 
 Opening paragraph.
 
 Second paragraph with the architecture, stack, or purpose.
 
-Closing line with the repo or live link.
+Closing line with the repo or live project.
 ```
 
 If there is no confirmed repository or live URL, end with a normal closing sentence instead of fabricating a link.
 
-If the user asks for a banner, match the repo's existing pattern:
-- use a wide banner-style image when one exists
-- prefer a repository preview image over a narrow logo when the user wants something like the existing project post
+If the user asks for a banner, do not assume one is part of the current pattern:
+- use a wide banner-style image only when one exists and the user wants it
+- prefer a repository preview image over a narrow logo only after verifying it for that repository
 - only use a banner URL that you verified for that specific project or repository
 - if you cannot verify a repo-specific banner or suitable image, omit the banner instead of guessing
 - do not copy a banner from another project just because the visual shape fits
