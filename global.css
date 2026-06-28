@@ -355,6 +355,43 @@
 		animation: motion-fade-up 360ms var(--ease-out-quart) both;
 	}
 
+	.thought-article-header {
+		display: grid;
+		gap: 1.25rem;
+		margin-bottom: 3rem;
+	}
+
+	.thought-meta-line {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.5rem 0.75rem;
+	}
+
+	.thought-title-block {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.thought-tag-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.thought-resource-links {
+		margin-top: 3rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--border-soft);
+	}
+
+	.thought-resource-links > p {
+		margin: 0 0 0.75rem;
+	}
+
 	.portfolio-shell:not(:has(.portfolio-panel:target)) #index,
 	.portfolio-shell:has(#index:target) #index {
 		display: block;

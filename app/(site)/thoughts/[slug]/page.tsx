@@ -1,7 +1,6 @@
 import { Mdx } from "@/app/components/mdx";
 import { Redis } from "@upstash/redis";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from ".velite";
 import "./mdx.css";
@@ -143,19 +142,38 @@ export default async function PostPage(props: Props) {
 	const repositoryUrl = project.repository
 		? `https://github.com/${project.repository}`
 		: undefined;
+	const resourceLinks: { href: string; label: string; detail: string }[] = [];
+
+	if (repositoryUrl && project.repository) {
+		resourceLinks.push({
+			href: repositoryUrl,
+			label: "Repository",
+			detail: project.repository,
+		});
+	}
+
+	if (project.url) {
+		resourceLinks.push({
+			href: project.url,
+			label: "Site",
+			detail: project.url,
+		});
+	}
 
 	return (
 		<section
 			className="route-panel motion-enter motion-delay-1"
 			aria-labelledby="thought-title"
 		>
-			<header className="mb-12 grid gap-5">
-				<Link href="/thoughts" className="small-meta text-link w-fit">
-					← Back to thoughts
-				</Link>
-
-				<div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-					<span className="small-meta">{formatThoughtDate(project.date)}</span>
+			<header className="thought-article-header">
+				<div className="thought-meta-line">
+					<span className="small-meta">Writing</span>
+					<span className="small-meta" aria-hidden="true">
+						·
+					</span>
+					<time className="small-meta" dateTime={project.date}>
+						{formatThoughtDate(project.date)}
+					</time>
 					<span className="small-meta" aria-hidden="true">
 						·
 					</span>
@@ -167,43 +185,57 @@ export default async function PostPage(props: Props) {
 					</span>
 				</div>
 
-				<div className="grid gap-3">
+				<div className="thought-title-block">
 					<h1 id="thought-title" className="type-display-md measure">
 						{project.title}
 					</h1>
 					<p className="type-body measure text-muted">{project.description}</p>
 				</div>
 
-				{(repositoryUrl || project.url) && (
-					<div className="flex flex-wrap gap-2 pt-1">
-						{repositoryUrl && (
-							<a
-								href={repositoryUrl}
-								className="ui-btn ui-btn-quiet no-underline"
-								target="_blank"
-								rel="noreferrer"
-							>
-								Repository
-							</a>
-						)}
-						{project.url && (
-							<a
-								href={project.url}
-								className="ui-btn ui-btn-quiet no-underline"
-								target="_blank"
-								rel="noreferrer"
-							>
-								Site
-							</a>
-						)}
-					</div>
+				{project.tags.length > 0 && (
+					<ul className="thought-tag-list" aria-label="Topics">
+						{project.tags.map((tag) => (
+							<li key={tag}>
+								<span className="quiet-chip">{tag}</span>
+							</li>
+						))}
+					</ul>
 				)}
 			</header>
+
 			<ReportView slug={project.slug} />
 
 			<article className="motion-enter motion-delay-2 prose prose-quoteless measure">
 				<Mdx code={project.body} />
 			</article>
+
+			{resourceLinks.length > 0 && (
+				<aside
+					className="thought-resource-links measure"
+					aria-label="Related links"
+				>
+					<p className="small-meta">Related links</p>
+					<div className="portfolio-list">
+						{resourceLinks.map((link) => (
+							<a
+								key={link.href}
+								href={link.href}
+								className="portfolio-row project-row group"
+								target="_blank"
+								rel="noreferrer"
+							>
+								<div>
+									<h3>{link.label}</h3>
+									<p>{link.detail}</p>
+								</div>
+								<span className="small-meta" aria-hidden="true">
+									↗
+								</span>
+							</a>
+						))}
+					</div>
+				</aside>
+			)}
 		</section>
 	);
 }

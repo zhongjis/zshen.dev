@@ -4,11 +4,11 @@ description: The configs and notes behind the Kubernetes cluster I run on my own
 date: "2026-03-20"
 repository: zhongjis/server-config
 published: true
+tags:
+  - kubernetes
+  - self-hosting
+  - homelab
 ---
-
-**kubernetes,self-hosting,homelab**
-
-![](https://opengraph.githubassets.com/63501a5762330240f42d3e4d30a17116333146e3643b7c2894cb02466c30a5d9/zhongjis/server-config)
 
 I use this repository to track the Kubernetes cluster I run at home.
 
@@ -17,5 +17,3 @@ The cluster runs on NixOS machines with `k3s` as the Kubernetes distribution, so
 I use Flux CD to manage continuous delivery. Changes land in Git first, then Flux applies them to the cluster, which keeps deployment and rollback simple.
 
 The repository collects the machine config, cluster manifests, and operating notes in one place so I can rebuild the cluster and keep it maintainable.
-
-You can find the project here: [zhongjis/server-config](https://github.com/zhongjis/server-config)
