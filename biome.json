@@ -1,0 +1,19 @@
+{
+	"files": {
+		"ignore": [
+			"**/.direnv/**",
+			"**/.sisyphus/**",
+			"**/node_modules/**",
+			"**/.next/**",
+			"**/dist/**",
+			"**/.velite/**"
+		]
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"formatter": {}
+}
