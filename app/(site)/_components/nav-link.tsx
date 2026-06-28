@@ -11,7 +11,10 @@ type NavLinkProps = {
 
 export function NavLink({ href, children }: NavLinkProps) {
 	const pathname = usePathname();
-	const isActive = pathname === href;
+	const isActive =
+		href === "/"
+			? pathname === href
+			: pathname === href || pathname.startsWith(`${href}/`);
 
 	return (
 		<Link href={href} className={`side-link ${isActive ? "is-active" : ""}`}>
