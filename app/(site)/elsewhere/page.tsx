@@ -8,6 +8,27 @@ const elsewhere = [
 		href: "https://github.com/zhongjis/nix-config",
 		meta: "GitHub",
 	},
+	{
+		title: "server-config",
+		description:
+			"Homelab infrastructure for three Colmena-managed NixOS k3s nodes and Flux-managed Kubernetes apps.",
+		href: "https://github.com/zhongjis/server-config",
+		meta: "GitHub",
+	},
+	{
+		title: "pi-config",
+		description:
+			"Panda Harness: personal Pi agents and extensions, with a reproducible Nix dev shell and root extension testing flow.",
+		href: "https://github.com/zhongjis/pi-config",
+		meta: "GitHub",
+	},
+	{
+		title: "agent-skills",
+		description:
+			"Canonical, public-safe agent skills for Nix and non-Nix consumers.",
+		href: "https://github.com/zhongjis/agent-skills",
+		meta: "GitHub",
+	},
 ];
 
 export default function ElsewherePage() {
