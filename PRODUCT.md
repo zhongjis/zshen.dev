@@ -1,43 +1,63 @@
 # Product
+<!-- impeccable:product-schema 1 -->
 
-## Register
+## Platform
 
-brand
+web
 
 ## Users
 
-Primary audience: customers, collaborators, hiring partners, and technical peers evaluating Zhongjie Shen through the work, writing, systems taste, and interface judgment expressed on the site.
+Primary audience: customers, collaborators, hiring partners, and technical peers evaluating Zhongjie Shen through his work, writing, systems taste, and interface judgment.
 
-Visitors arrive with limited time. They should quickly understand that Zhongjie builds calm, reliable software for complex work, with enough personal texture to trust the person behind the craft. The job is not passive browsing. The job is forming confidence: this builder can reason deeply, ship carefully, and make technical systems feel humane.
+Visitors arrive with limited time. They should quickly understand that Zhongjie builds calm, reliable software for complex work, with enough personal texture to trust the person behind the craft. Their job is forming confidence: this builder can reason deeply, ship carefully, and make technical systems feel humane.
 
 ## Product Purpose
 
-This site is a personal brand surface for Zhongjie Shen. It introduces his operating style, consulting interests, project work, and systems hobbies through a compact portfolio shell.
+This site is Zhongjie Shen's personal brand surface. It introduces his operating style, consulting interests, project work, and systems hobbies through a compact portfolio.
 
 Success means a visitor leaves with a clear mental model: enterprise software by day, AI tooling and home-lab systems by night, minimal surfaces over deliberate machinery. The site should support consulting conversations and professional trust without becoming generic lead-generation marketing.
 
-## Brand Personality
+## Positioning
+
+A product-minded engineer making complex software reliable and humane.
+
+## Operating Context
+
+Consulting, technical writing, and public systems and configuration projects.
+
+## Capabilities and Constraints
+
+The site presents About me, Consulting, Thoughts, and Elsewhere. Consulting topics include AI tooling, software contracting, and home lab work. Thoughts and project content come from Velite-managed MDX.
+
+The product is a Next.js 16 web portfolio deployed to Vercel. It uses the App Router and Server Components by default. Its Redis-backed view counter may be unavailable in local environments without the required credentials.
+
+## Brand Commitments
 
 Technical, personal, precise.
 
-The voice should feel calm and confident, but not corporate. It should read like a workshop notebook from someone who has opinions, builds with care, and prefers useful systems over spectacle. The site can be strange in small ways, as long as the strangeness feels earned by the person behind it.
+The voice should feel calm and confident, but not corporate. It should read like a workshop notebook from someone who has opinions, builds with care, and prefers useful systems over spectacle. Small moments of strangeness are welcome when earned by the person behind the work.
 
-## Anti-references
+Zhongjie Shen's name, zshen.dev, and `/panda-mark.png` are established public brand assets.
 
 Do not make the site feel like a copied portfolio template, a generic SaaS hero, or a startup landing page with interchangeable claims.
 
-Do not treat Mitchell Hashimoto as the brand target. The Mitchell influence is allowed as attribution for page layout, sticky rail navigation, and CSS navigation logic only. Future design choices should make the site more Zhongjie-specific, not more referential.
+Do not treat Mitchell Hashimoto as the brand target. That influence is structural only: page layout, sticky rail navigation, and CSS navigation logic. Future work should make the site more Zhongjie-specific, not more referential.
 
-Do not revive Chronark/template signals, gradient text, decorative glass, stock startup cards, generic AI-tool marketing, pure black, pure white, or decorative colored side-stripe borders.
+Do not revive Chronark or template signals, gradient text, decorative glass, stock startup cards, generic AI-tool marketing, pure black, pure white, or decorative colored side-stripe borders.
 
-## Design Principles
+## Evidence on Hand
 
-1. Lead with personal evidence: every section should reveal what Zhongjie builds, how he thinks, or what he notices.
-2. Keep the surface calm: let the interface stay quiet so the ideas, systems, and craft carry the weight.
-3. Make inherited structure disappear: keep useful shell mechanics, but replace template feeling with Zhongjie-specific identity, marks, copy, and rhythm.
-4. Use restraint with bite: green accents, panda mark, particle field, and serif type should feel deliberate, not decorative.
-5. Prefer workshop clarity over marketing polish: lists, metadata, and compact panels should feel like a precise notebook, not a funnel.
+Available evidence includes shipped site copy, published thoughts and project content, and public GitHub repositories: nix-config, server-config, pi-config/Panda Harness, and agent-skills.
+
+No testimonials, named customer claims, benchmarks, metrics, pricing, or licensing claims are on hand. Do not fabricate them.
+
+## Product Principles
+
+1. **Evidence-first:** Ground claims in shipped work, published writing, or public repositories.
+2. **Clarity:** Help visitors form a useful mental model quickly; prefer workshop clarity over marketing polish.
+3. **Technical depth:** Show careful reasoning and deliberate machinery without making the surface noisy.
+4. **Personal specificity:** Reveal what Zhongjie builds, how he thinks, and what he notices; inherited structure should never overpower his identity.
 
 ## Accessibility & Inclusion
 
-Target WCAG AA contrast for text and interactive states. Keep keyboard navigation visible with clear focus rings. Respect `prefers-reduced-motion` globally. Do not communicate state by color alone; active navigation uses both color and a dot. Keep body copy readable, with practical line lengths and enough spacing for scanning.
+Target WCAG AA contrast for text and interactive states. Keep keyboard navigation visible with clear focus rings. Respect `prefers-reduced-motion` globally. Do not communicate state by color alone; pair color with another cue. Keep body copy readable, with practical line lengths and enough spacing for scanning.
